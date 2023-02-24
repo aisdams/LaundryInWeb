@@ -22,7 +22,7 @@ class Login
         }
         $user = Auth::User();
 
-        if($user->role == $role) {
+        if($user->level == $role) {
             return $next($request);
     }
         return redirect('login')->with('error',"Anda Tidak Memiliki akses");

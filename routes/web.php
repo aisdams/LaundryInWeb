@@ -30,6 +30,10 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return view('dashboard');
 });
+Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/user/profile', function () {
+    return view('userprofile');
+});
 
 Route::group(['prefix'=>'auth'], function ($router) {
     Route::get('/register', [AuthController::class, 'viewregister']);
@@ -38,7 +42,7 @@ Route::group(['prefix'=>'auth'], function ($router) {
     Route::post('/postlogin', [AuthController::class, 'login'])->name('login.post');
     Route::get('/profile', [AuthController::class, 'profile']);
 });
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
+
 // check Role User
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['login:admin']], function () {

@@ -11,6 +11,8 @@
   <link rel="stylesheet" href={{ asset('template/vendors/mdi/css/materialdesignicons.min.css') }}>
   <link rel="stylesheet" href={{ asset('template/vendors/css/vendor.bundle.base.css') }}>
   <!-- endinject -->
+  {{-- Toastr --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -28,10 +30,9 @@
           <span></span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="mdi mdi-view-quilt menu-icon"></i>
+          <a class="nav-link" href="/dashboard">
+            <i class="fa-solid fa-house-chimney menu-icon"></i>
             <span class="menu-title">Dashboard</span>
-            <div class="badge badge-info badge-pill">2</div>
           </a>
         </li>
         <li class="nav-item sidebar-category">
@@ -40,7 +41,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-            <i class="mdi mdi-palette menu-icon"></i>
+            <i class="fa-solid fa-users-gear menu-icon"></i>
             <span class="menu-title">Management User</span>
             <i class="menu-arrow"></i>
           </a>
@@ -53,61 +54,32 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/forms/basic_elements.html">
-            <i class="mdi mdi-view-headline menu-icon"></i>
+            <i class="fa-solid fa-money-bill-transfer menu-icon"></i>
             <span class="menu-title">Transaksi</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/charts/chartjs.html">
-            <i class="mdi mdi-chart-pie menu-icon"></i>
+            <i class="fa-solid fa-house-chimney menu-icon"></i>
             <span class="menu-title">Paket Laundry</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/tables/basic-table.html">
-            <i class="mdi mdi-grid-large menu-icon"></i>
-            <span class="menu-title">Tables</span>
+            <i class="fa-solid fa-address-card menu-icon"></i>
+            <span class="menu-title">Identitas Aplikasi</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/icons/mdi.html">
-            <i class="mdi mdi-emoticon menu-icon"></i>
-            <span class="menu-title">Icons</span>
-          </a>
-        </li>
-        <li class="nav-item sidebar-category">
-          <p>Pages</p>
-          <span></span>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-            <i class="mdi mdi-account menu-icon"></i>
-            <span class="menu-title">User Pages</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="auth">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item sidebar-category">
-          <p>Apps</p>
-          <span></span>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="docs/documentation.html">
-            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-            <span class="menu-title">Documentation</span>
+            <i class="fa-solid fa-book menu-icon"></i>
+            <span class="menu-title">Laporan</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://www.bootstrapdash.com/product/spica-admin/">
-            <button class="btn bg-danger btn-sm menu-title">Upgrade to pro</button>
+          <a class="nav-link" href="{{ url('/user/profile') }}">
+            <i class="fa-solid fa-user menu-icon"></i>
+            <span class="menu-title">User</span>
           </a>
         </li>
       </ul>
@@ -124,7 +96,7 @@
             <a class="navbar-brand brand-logo" href="index.html"><img src={{asset('asset/logolaundry.png')}} alt="logo" style="width: 60px;height: 60px; border-radius: 50%" /></a>
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src={{asset('asset/logolaundry.png')}} alt="logo"/></a>
           </div>
-          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, Brandon Haynes</h4>
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, {{ Auth::user()->username }}</h4>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
               <h4 class="mb-0 font-weight-bold d-none d-xl-block">Mar 12, 2019 - Apr 10, 2019</h4>
@@ -162,10 +134,10 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                      <img src={{asset('template/images/faces/face3.jpg')}} alt="image" class="profile-pic">
+                    <img src="{{ asset('img/' . auth()->user()->avatar) }}" alt="" style="width: 200px;" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
-                    <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                    <h6 class="preview-subject ellipsis font-weight-normal">{{ Auth::user()->username }}
                     </h6>
                     <p class="font-weight-light small-text text-muted mb-0">
                       Upcoming board meeting
@@ -296,6 +268,15 @@
   </div>
   <!-- container-scroller -->
 
+  <!-- jQuery -->
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  @stack('scripts')
   <!-- base:js -->
   <script src={{asset('template/vendors/js/vendor.bundle.base.js')}}></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -315,6 +296,8 @@
   <!-- Custom js for this page-->
   <script src={{asset('template/js/dashboard.js')}}></script>
   <!-- End custom js for this page-->
+  {{-- Kits FontAwesome --}}
+  <script src="https://kit.fontawesome.com/4d8cfff1ae.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

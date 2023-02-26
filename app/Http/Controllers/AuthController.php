@@ -40,15 +40,13 @@ class AuthController extends Controller
         }
         if($validator->fails()) {
             // return response()->json($validator->errors(),422);
-            return Redirect::back()->withInput()->withErrors(['login_gagal' => 'These credentials do not match our records.']);
+            return Redirect::back()->withInput()->withErrors($validator->errors())->with('msg', 'Something Wrong');
         }
         if(!$token=auth()->attempt($validator->validated())) {
             // return response()->json(['error'=>'Unauthorized'],401);
-            return Redirect::back()->withInput()->withErrors(['login_gagal' => 'These credentials do not match our records.']);
+            return Redirect::back()->withInput()->withErrors($validator->errors())->with('msg', 'Something Wrong');
         }
-        return response()->json([
-            'user'=>auth()->user()
-        ]);
+        return redirect("/dashboard")->withInput()->withSuccess(['success' => 'User successfully login']);
     }
 
     public function viewregister() {
@@ -56,22 +54,38 @@ class AuthController extends Controller
     }
 
     public function register(Request $request) {
+        $pt = $request->avatar;
+        $ptFile = $pt->getClientOriginalName();
+        $pt->move(public_path().'/img',$ptFile);
+
         $validator = Validator::make($request->all(),[
             'nama'=>'required',
             'username'=>'required',
             'email'=>'required|string|email|unique:users',
             'level'=>'required',
-            'password'=>'required|string|confirmed|min:6'
+            'avatar'=>'required|image|mimes:jpeg,png,jpg|',
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'min:10',             // must be at least 10 characters in length
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/', // must contain a special character
+            ]
         ]);
         if($validator->fails()) {
             return Redirect::back()->withInput()->withErrors(['register_gagal' => 'registrasi gagal']);
+            
             // return response()->json($validator->errors()->toJson(),400);
         }
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password'=>bcrypt($request->password)]
+            ['password'=>bcrypt($request->password),
+            'avatar' => $ptFile,]
         ));
-        return redirect("dashboard")->withInput()->withSuccess(['success' => 'User successfully registered']);
+        return redirect("api/login")->withInput()->withSuccess(['success' => 'User successfully registered']);
         
     }
     

@@ -1,7 +1,7 @@
 @extends('layoutauth')
 @section('judulnya')
 @section('formnya')
-<form class="pt-3" action="{{ route('register.post') }}" method="POST">
+<form class="pt-3" action="{{ route('register.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @if (Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}
@@ -9,16 +9,13 @@
     </div>
     @endif
     @error('register_gagal')
-    {{-- <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span> --}}
      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-         {{-- <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span> --}}
         <span class="alert-inner--text"><strong>Warning!</strong> {{ $message }}</span>
          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
     </div>
     @enderror
+    
     <div class="form-group">
       <label for="exampleInputEmail">Nama</label>
       <div class="input-group">
@@ -62,17 +59,17 @@
       </div>
     </div>
     <div class="form-group">
-      {{-- <label for="exampleInputEmail">Level</label> --}}
+      <label for="exampleInputEmail">Choose Image</label>
       <div class="input-group">
         {{-- <div class="input-group-prepend bg-transparent">
           <span class="input-group-text bg-transparent border-right-0">
             <i class="mdi mdi-account-outline text-white"></i>
           </span>
         </div> --}}
-        <input type="hidden" value="customer" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
-        @if($errors->has('level'))
-        <span class="error">{{ $errors->first('level') }}</span>
-        @endif
+        <input type="file" class="form-control" style="width: 100%" name="avatar">
+          @if($errors->has('avatar'))
+          <span class="error">{{ $errors->first('avatar') }}</span>
+          @endif
       </div>
     </div>
     <div class="form-group">
@@ -102,6 +99,13 @@
         <span class="error">{{ $errors->first('password_confirmation') }}</span>
         @endif
       </div>
+    </div>
+    <div class="form-group">
+      
+      <input type="hidden" value="customer" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
+      @if($errors->has('level'))
+      <span class="error">{{ $errors->first('level') }}</span>
+      @endif
     </div>
     <div class="my-2 d-flex justify-content-between align-items-center">
       <div class="form-check">

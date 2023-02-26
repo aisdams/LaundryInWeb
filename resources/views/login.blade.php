@@ -3,6 +3,11 @@
 @section('formnya')
 <form class="pt-3" action="{{ route('login.post') }}" method="POST">
     @csrf
+    @if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
+    @endif
     @error('login_gagal')
     {{-- <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>

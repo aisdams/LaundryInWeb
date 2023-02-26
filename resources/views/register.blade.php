@@ -3,7 +3,12 @@
 @section('formnya')
 <form class="pt-3" action="{{ route('register.post') }}" method="POST">
     @csrf
-    @error('success')
+    @if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
+    @endif
+    @error('register_gagal')
     {{-- <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
     </span> --}}

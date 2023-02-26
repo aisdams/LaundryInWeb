@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +17,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('dashboard');
-});
-Route::get('dashboard', function () {
+})->middleware('auth');
+
+Route::get('/dashboard', function () {
     return view('dashboard');
+})->middleware('auth');
+
+// Admin
+Route::get('/admin', function () {
+    return view('dashboard');
+});
+
+Route::group(['prefix'=>'auth'], function ($router) {
+    Route::get('/register', [AuthController::class, 'viewregister']);
+    Route::post('/postregister', [AuthController::class, 'register'])->name('register.post');
+    Route::get('/login', [AuthController::class, 'viewlogin'])->name('login');
+    Route::post('/postlogin', [AuthController::class, 'login'])->name('login.post');
+    Route::get('/profile', [AuthController::class, 'profile']);
+});
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
+// check Role User
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['login:admin']], function () {
+        Route::get('admin', [AdminController::class, 'index'])->name('admin');
+    });
+    Route::group(['middleware' => ['login:karyawan']], function () {
+        Route::get('karyawan', [KaryawanController::class, 'index'])->name('karyawan');
+    });
+    Route::group(['middleware' => ['login:customer']], function () {
+        Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    });
 });

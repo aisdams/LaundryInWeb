@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>LaundyInWeb</title>
   <!-- base:css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="stylesheet" href={{ asset('template/vendors/mdi/css/materialdesignicons.min.css') }}>
   <link rel="stylesheet" href={{ asset('template/vendors/css/vendor.bundle.base.css') }}>
   <!-- endinject -->
@@ -40,26 +41,26 @@
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">UI Elements</span>
+            <span class="menu-title">Management User</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Karyawan</a></li>
+              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Customer</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/forms/basic_elements.html">
             <i class="mdi mdi-view-headline menu-icon"></i>
-            <span class="menu-title">Form elements</span>
+            <span class="menu-title">Transaksi</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/charts/chartjs.html">
             <i class="mdi mdi-chart-pie menu-icon"></i>
-            <span class="menu-title">Charts</span>
+            <span class="menu-title">Paket Laundry</span>
           </a>
         </li>
         <li class="nav-item">
@@ -245,7 +246,7 @@
                   <i class="mdi mdi-settings text-primary"></i>
                   Settings
                 </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="{{ url('logout') }}">
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
                 </a>
@@ -297,6 +298,7 @@
 
   <!-- base:js -->
   <script src={{asset('template/vendors/js/vendor.bundle.base.js')}}></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <script src={{asset('template/vendors/chart.js/Chart.min.js')}}></script>

@@ -48,6 +48,10 @@ class AuthController extends Controller
         return $this->createNewToken($token);
     }
 
+    public function viewregister() {
+        return view('register');
+    }
+
     public function register(Request $request) {
         $validator = Validator::make($request->all(),[
             'nama'=>'required',
@@ -57,18 +61,32 @@ class AuthController extends Controller
             'password'=>'required|string|confirmed|min:6'
         ]);
         if($validator->fails()) {
-            return response()->json($validator->errors()->toJson(),400);
+            return Redirect::back()->withInput()->withErrors(['register_gagal' => 'Something Wrong']);
+            // return response()->json($validator->errors()->toJson(),400);
         }
         $user = User::create(array_merge(
             $validator->validated(),
             ['password'=>bcrypt($request->password)]
         ));
-        return response()->json([
-            'message'=>'User successfully registered',
-            'user'=>$user
-        ], 201);
+        // $check = $this->create($user);
+        // return response()->json([
+        //     'message'=>'User successfully registered',
+        //     'user'=>$user
+        // ], 201);
+        return redirect("dashboard")->withInput()->withSuccess(['success' => 'User successfully registered']);
+        
     }
 
+    // public function create(array $data)
+    // {
+    //   return User::create([
+    //     'username' => $data['username'],
+    //     'level' => 'tamu',
+    //     'notelp' => $data['notelp'],
+    //     'email' => $data['email'],
+    //     'password' => Hash::make($data['password'])
+    //   ]);
+    // }
     // public function login(Request $request) {
     //     $validator =Validator::make($request->all(), [
     //         'email'=>'required|email',

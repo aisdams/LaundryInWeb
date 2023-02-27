@@ -8,8 +8,16 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     </div>
     @endif
-    @error('register_gagal')
-     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    @if (Session::has('msg'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span class="alert-inner--text"><strong>Warning!</strong> {!! \Session::get('msg') !!}</span>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+  </div>
+  @endif
+    
+    @error('success')
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <span class="alert-inner--text"><strong>Warning!</strong> {{ $message }}</span>
          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
@@ -26,7 +34,11 @@
         </div>
         <input type="text" class="form-control form-control-lg border-left-0" style="color: white" id="nama" placeholder="Nama" name="nama" autofocus>
         @if($errors->has('nama'))
-        <span class="error">{{ $errors->first('nama') }}</span>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('nama') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
         @endif
       </div>
     </div>
@@ -40,7 +52,11 @@
         </div>
         <input type="text" class="form-control form-control-lg border-left-0" style="color: white" id="username" placeholder="username" name="username" autofocus>
         @if($errors->has('username'))
-        <span class="error">{{ $errors->first('username') }}</span>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('username') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
         @endif
       </div>
     </div>
@@ -54,7 +70,11 @@
         </div>
         <input type="text" class="form-control form-control-lg border-left-0" style="color: white" id="email" placeholder="Email" name="email" autofocus>
         @if($errors->has('email'))
-        <span class="error">{{ $errors->first('email') }}</span>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('email') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
         @endif
       </div>
     </div>
@@ -67,9 +87,13 @@
           </span>
         </div> --}}
         <input type="file" class="form-control" style="width: 100%" name="avatar">
-          @if($errors->has('avatar'))
-          <span class="error">{{ $errors->first('avatar') }}</span>
-          @endif
+        @if($errors->has('avatar'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('avatar') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+        @endif
       </div>
     </div>
     <div class="form-group">
@@ -82,8 +106,15 @@
         </div>
         <input type="password" class="form-control form-control-lg border-left-0" style="color: white" id="password" name="password" placeholder="Password">
         @if($errors->has('password'))
-        <span class="error">{{ $errors->first('password') }}</span>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('password') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
         @endif
+        <p id="passwordHelpBlock" class="form-text text-muted">
+          Your password must be more than 6 characters long, should contain at-least 1 Lowercase, and 1 Numeric.
+     </p>
       </div>
     </div>
     <div class="form-group">
@@ -96,7 +127,11 @@
         </div>
         <input type="password" class="form-control form-control-lg border-left-0" style="color: white" id="password_confirmation" name="password_confirmation" placeholder="password_confirmation">
         @if($errors->has('password_confirmation'))
-        <span class="error">{{ $errors->first('password_confirmation') }}</span>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('password_confirmation') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
         @endif
       </div>
     </div>
@@ -117,7 +152,7 @@
       <a href="#" class="auth-link text-white">Forgot password?</a>
     </div>
     <div class="my-2">
-      <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn" href="index.html" style="background-color: #E8D5C4">LOGIN</button>
+      <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn" href="index.html" style="background-color: #E8D5C4">Register</button>
     </div>
     <div class="text-center mt-4 font-weight-light">
       Don't have an account? <a href="register-2.html" class="text-white " style="font-weight: bold">Create</a>

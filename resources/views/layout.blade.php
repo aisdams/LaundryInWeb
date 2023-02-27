@@ -134,7 +134,7 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('img/' . auth()->user()->avatar) }}" alt="" style="width: 200px;" alt="image" class="profile-pic">
+                    <img src="{{ asset('avatar/' . auth()->user()->avatar) }}" alt="" style="width: 200px;" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
                     <h6 class="preview-subject ellipsis font-weight-normal">{{ Auth::user()->username }}
@@ -210,7 +210,7 @@
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src={{asset('template/images/faces/face5.jpg')}} alt="profile"/>
+                <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile"/>
                 <span class="nav-profile-name">Eleanor Richardson</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -218,7 +218,7 @@
                   <i class="mdi mdi-settings text-primary"></i>
                   Settings
                 </a>
-                <a class="dropdown-item" href="{{ url('logout') }}">
+                <a class="dropdown-item" href="{{ route('logout') }}">
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
                 </a>

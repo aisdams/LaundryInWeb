@@ -54,38 +54,46 @@ class AuthController extends Controller
     }
 
     public function register(Request $request) {
-        $pt = $request->avatar;
-        $ptFile = $pt->getClientOriginalName();
-        $pt->move(public_path().'/img',$ptFile);
 
         $validator = Validator::make($request->all(),[
             'nama'=>'required',
             'username'=>'required',
             'email'=>'required|string|email|unique:users',
             'level'=>'required',
-            'avatar'=>'required|image|mimes:jpeg,png,jpg|',
+            'avatar'=>'required|image|mimes:png,jpg,jpeg|max:2048',
             'password' => [
                 'required',
                 'string',
                 'confirmed',
-                'min:10',             // must be at least 10 characters in length
+                'min:6',             // must be at least 6 characters in length
                 'regex:/[a-z]/',      // must contain at least one lowercase letter
-                'regex:/[A-Z]/',      // must contain at least one uppercase letter
                 'regex:/[0-9]/',      // must contain at least one digit
-                'regex:/[@$!%*#?&]/', // must contain a special character
-            ]
+                // 'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                // 'regex:/[@$!%*#?&]/', // must contain a special character
+            ],
+            'password_confirmation'=>'required|same:password'
         ]);
         if($validator->fails()) {
-            return Redirect::back()->withInput()->withErrors(['register_gagal' => 'registrasi gagal']);
+            return Redirect::back()->withInput()->withErrors($validator->errors())->with('msg', 'Something Wrong');
+            // return Redirect::back()->withInput()->withErrors(['register_gagal' => 'registrasi gagal']);
             
             // return response()->json($validator->errors()->toJson(),400);
         }
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password'=>bcrypt($request->password),
-            'avatar' => $ptFile,]
+            ['password'=>bcrypt($request->password)]
         ));
-        return redirect("api/login")->withInput()->withSuccess(['success' => 'User successfully registered']);
+        
+        if($request->hasFile('avatar')){
+            $filename = $request->avatar->getClientOriginalName();
+            $request->avatar->storeAs('images',$filename,'public');
+            Auth()->user()->update(['avatar'=>$filename]);
+        }
+        // if($request->hasFile('avatar')) {
+        //     $request->file('avatar')->move('avatar/', $request->file('avatar')->getClientOriginalName());
+        //     $validator->avatar = $request->file('avatar')->getClientOriginalName();
+        // }
+        return redirect("auth/login")->withInput()->withSuccess(['success' => 'User successfully registered']);
         
     }
     

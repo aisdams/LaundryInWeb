@@ -30,7 +30,13 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return view('dashboard');
 });
-Route::get('/logout', [AuthController::class, 'logout']);
+
+// Customer
+Route::get('/customer', function () {
+    return view('dashboard');
+});
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/user/profile', function () {
     return view('userprofile');
 });

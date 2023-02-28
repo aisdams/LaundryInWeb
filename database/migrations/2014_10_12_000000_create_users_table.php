@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->enum('level', ['admin', 'karyawan','customer']);
             $table->string('avatar');
+            $table->string('notelp');
             $table->string('password');
             $table->timestamps();
         });

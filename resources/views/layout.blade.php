@@ -77,9 +77,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/user/profile') }}">
+          <a class="nav-link" href="{{ url('/auth/profile') }}">
             <i class="fa-solid fa-user menu-icon"></i>
-            <span class="menu-title">User</span>
+            <span class="menu-title">User Profile</span>
           </a>
         </li>
       </ul>
@@ -137,7 +137,7 @@
                     <img src="{{ asset('avatar/' . auth()->user()->avatar) }}" alt="" style="width: 200px;" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
-                    <h6 class="preview-subject ellipsis font-weight-normal">{{ Auth::user()->username }}
+                    <h6 class="preview-subject ellipsis font-weight-normal">{{ Auth::user()->nama }}
                     </h6>
                     <p class="font-weight-light small-text text-muted mb-0">
                       Upcoming board meeting
@@ -211,14 +211,14 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                 <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile"/>
-                <span class="nav-profile-name">Eleanor Richardson</span>
+                <span class="nav-profile-name">{{ Auth::user()->username }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="{{ url('/auth/profile') }}">
                   <i class="mdi mdi-settings text-primary"></i>
-                  Settings
+                  Profile
                 </a>
-                <a class="dropdown-item" href="{{ route('logout') }}">
+                <a class="dropdown-item" href="{{ url('logout') }}">
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
                 </a>

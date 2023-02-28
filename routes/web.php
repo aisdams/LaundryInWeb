@@ -37,9 +37,6 @@ Route::get('/customer', function () {
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/user/profile', function () {
-    return view('userprofile');
-});
 
 Route::group(['prefix'=>'auth'], function ($router) {
     Route::get('/register', [AuthController::class, 'viewregister']);

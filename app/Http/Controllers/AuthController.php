@@ -61,6 +61,7 @@ class AuthController extends Controller
             'email'=>'required|string|email|unique:users',
             'level'=>'required',
             'avatar'=>'required|image|mimes:png,jpg,jpeg|max:2048',
+            'notelp'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'password' => [
                 'required',
                 'string',
@@ -98,7 +99,7 @@ class AuthController extends Controller
     }
     
     public function profile() {
-        return response()->json(auth()->user());
+        return view('userprofile');
     }
 
     public function logout() {

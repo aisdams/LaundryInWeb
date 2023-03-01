@@ -1,0 +1,17 @@
+.tbl-btn{
+  width: 9.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tbl-btn-add{
+  width: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tbl-btn:hover, .tbl-btn-add:hover{
+  text-decoration: none;
+  font-weight: 600;
+  transition: .3s;
+}

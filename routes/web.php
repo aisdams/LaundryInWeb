@@ -31,10 +31,12 @@ Route::get('/admin', function () {
     return view('dashboard');
 });
 
-// Customer
-Route::get('/customer', function () {
-    return view('dashboard');
-});
+// ? Customer
+Route::get('/data-customer', [CustomerController::class, 'index'])->name('data-customer');// customer index
+
+Route::get('/data-customer/add-customer', [CustomerController::class, 'create'])->name('addcustomer'); // add new customer
+Route::post('/data-customer/add-customer/insert-customer', [CustomerController::class, 'store'])->name('insertcustomer');
+// ? End Customer
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

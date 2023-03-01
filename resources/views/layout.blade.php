@@ -134,7 +134,7 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('avatar/' . auth()->user()->avatar) }}" alt="" style="width: 200px;" alt="image" class="profile-pic">
+                    <img src="" alt="" style="width: 200px;" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
                     <h6 class="preview-subject ellipsis font-weight-normal">{{ Auth::user()->nama }}

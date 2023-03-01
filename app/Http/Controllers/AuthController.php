@@ -7,6 +7,7 @@ use Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
@@ -85,8 +86,10 @@ class AuthController extends Controller
             ['password'=>bcrypt($request->password)]
         ));
         
+        
         if($request->hasFile('avatar')){
             $filename = $request->avatar->getClientOriginalName();
+             $this->deleteOldAvatar(); 
             $request->avatar->storeAs('images',$filename,'public');
             Auth()->user()->update(['avatar'=>$filename]);
         }
@@ -97,6 +100,12 @@ class AuthController extends Controller
         return redirect("auth/login")->withInput()->withSuccess(['success' => 'User successfully registered']);
         
     }
+    protected function deleteOldAvatar()
+    {
+      if (auth()->user()->avatar){
+        Storage::delete('/public/images/'.auth()->user()->avatar);
+      }
+     }
     
     public function profile() {
         return view('userprofile');

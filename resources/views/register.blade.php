@@ -86,10 +86,29 @@
             <i class="mdi mdi-account-outline text-white"></i>
           </span>
         </div> --}}
-        <input type="file" class="form-control" style="width: 100%" name="avatar">
+        <input type="file" class="form-control" style="width: 100%; color: white" name="avatar">
         @if($errors->has('avatar'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('avatar') }}</span>
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+        @endif
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleInputPassword">No Telp</label>
+      <div class="input-group">
+        <div class="input-group-prepend bg-transparent">
+          <span class="input-group-text bg-transparent border-right-0">
+            <i class="mdi mdi-lock-outline text-white"></i>
+          </span>
+        </div>
+        <input type="number" class="form-control form-control-lg border-left-0" style="color: white" id="notelp" name="notelp" placeholder="No Telp">
+        @if($errors->has('notelp'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('notelp') }}</span>
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
       </div>

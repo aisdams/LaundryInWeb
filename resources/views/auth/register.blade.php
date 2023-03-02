@@ -1,4 +1,4 @@
-@extends('layoutauth')
+@extends('auth.layoutauth')
 @section('judulnya')
 @section('formnya')
 <form class="pt-3" action="{{ route('register.post') }}" method="POST" enctype="multipart/form-data">

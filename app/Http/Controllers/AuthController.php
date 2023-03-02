@@ -19,7 +19,7 @@ class AuthController extends Controller
     }
 
     public function viewlogin() {
-        return view('login');
+        return view('auth.login');
     }
 
     public function login(Request $request) {
@@ -53,7 +53,7 @@ class AuthController extends Controller
     }
 
     public function viewregister() {
-        return view('register');
+        return view('auth.register');
     }
 
     public function register(Request $request) {
@@ -109,11 +109,11 @@ class AuthController extends Controller
     // }
 
     public function profile() {
-        return view('userprofile');
+        return view('auth.userprofile');
     }
 
     public function changeprofile() {
-        return view('changeprofile');
+        return view('auth.changeprofile');
     }
 
     public function updateprofile(ChangePasswordRequest $request) {

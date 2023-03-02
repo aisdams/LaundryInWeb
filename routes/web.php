@@ -59,4 +59,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['login:customer']], function () {
         Route::get('customer', [CustomerController::class, 'index'])->name('customer');
     });
+    
+    Route::get('/identitas-profile', function () {
+        return view('identitas.index');
+    });
 });

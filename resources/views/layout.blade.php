@@ -66,7 +66,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pages/tables/basic-table.html">
+          <a class="nav-link" href="{{ url('identitas-profile') }}">
             <i class="fa-solid fa-address-card menu-icon"></i>
             <span class="menu-title">Identitas Aplikasi</span>
           </a>

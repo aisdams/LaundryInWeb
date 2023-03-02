@@ -50,6 +50,12 @@
           </span>
         </div>
         <input type="password" class="form-control form-control-lg border-left-0" style="color: white" id="password" name="password" placeholder="Password">
+        <div class="input-group-append">
+          <span class="input-group-text"  style="background-color: blueviolet" onclick="password_show_hide();">
+            <i class="fas fa-eye" id="show_eye"></i>
+            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+          </span>
+        </div>
         @if($errors->has('password'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('password') }}</span>
@@ -82,3 +88,23 @@
     </div>
   </form>
 @endsection
+
+@push('scriptauth')
+    <script>
+     function password_show_hide() {
+        var x = document.getElementById("password");
+        var show_eye = document.getElementById("show_eye");
+        var hide_eye = document.getElementById("hide_eye");
+        hide_eye.classList.remove("d-none");
+        if (x.type === "password") {
+            x.type = "text";
+            show_eye.style.display = "none";
+            hide_eye.style.display = "block";
+        } else {
+            x.type = "password";
+            show_eye.style.display = "block";
+            hide_eye.style.display = "none";
+        }
+        }
+    </script>
+@endpush

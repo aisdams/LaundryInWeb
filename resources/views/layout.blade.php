@@ -19,6 +19,7 @@
   <link rel="stylesheet" href={{ asset('template/css/style.css') }}>
   <!-- endinject -->
   <link rel="shortcut icon" href={{asset('asset/logolaundry.png')}} />
+  @stack('style')
 </head>
 <body>
   <div class="container-scroller d-flex">
@@ -77,7 +78,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/auth/profile') }}">
+          <a class="nav-link" href="{{ url('/auth/change-profile') }}">
             <i class="fa-solid fa-user menu-icon"></i>
             <span class="menu-title">User Profile</span>
           </a>

@@ -124,6 +124,12 @@
           </span>
         </div>
         <input type="password" class="form-control form-control-lg border-left-0" style="color: white" id="password" name="password" placeholder="Password">
+        <div class="input-group-append">
+          <span class="input-group-text"  style="background-color: blueviolet" onclick="password_show_hide();">
+            <i class="fas fa-eye" id="show_eye"></i>
+            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+          </span>
+        </div>
         @if($errors->has('password'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('password') }}</span>
@@ -145,6 +151,12 @@
           </span>
         </div>
         <input type="password" class="form-control form-control-lg border-left-0" style="color: white" id="password_confirmation" name="password_confirmation" placeholder="password_confirmation">
+        <div class="input-group-append">
+          <span class="input-group-text"  style="background-color: blueviolet" onclick="password_show_hideTwo();">
+            <i class="fas fa-eye" id="show_eyee"></i>
+            <i class="fas fa-eye-slash d-none" id="hide_eyee"></i>
+          </span>
+        </div>
         @if($errors->has('password_confirmation'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('password_confirmation') }}</span>
@@ -174,7 +186,45 @@
       <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn" href="index.html" style="background-color: #E8D5C4">Register</button>
     </div>
     <div class="text-center mt-4 font-weight-light">
-      Don't have an account? <a href="register-2.html" class="text-white " style="font-weight: bold">Create</a>
+      have an account? <a href="/auth/login" class="text-white " style="font-weight: bold">Login</a>
     </div>
   </form>
 @endsection
+
+@push('scriptauth')
+    <script>
+     function password_show_hide() {
+        var x = document.getElementById("password");
+        var show_eye = document.getElementById("show_eye");
+        var hide_eye = document.getElementById("hide_eye");
+        hide_eye.classList.remove("d-none");
+        if (x.type === "password") {
+            x.type = "text";
+            show_eye.style.display = "none";
+            hide_eye.style.display = "block";
+        } else {
+            x.type = "password";
+            show_eye.style.display = "block";
+            hide_eye.style.display = "none";
+        }
+        }
+    </script>
+
+<script>
+  function password_show_hideTwo() {
+     var x = document.getElementById("password_confirmation");
+     var show_eyee = document.getElementById("show_eyee");
+     var hide_eyee = document.getElementById("hide_eyee");
+     hide_eyee.classList.remove("d-none");
+     if (x.type === "password") {
+         x.type = "text";
+         show_eyee.style.display = "none";
+         hide_eyee.style.display = "block";
+     } else {
+         x.type = "password";
+         show_eyee.style.display = "block";
+         hide_eyee.style.display = "none";
+     }
+     }
+ </script>
+@endpush

@@ -56,7 +56,9 @@
   </div>
   <!-- container-scroller -->
   <!-- base:js -->
+  @stack('scriptauth')
   <script src={{ asset('template/vendors/js/vendor.bundle.base.js') }}></script>
+  <script src="https://kit.fontawesome.com/4d8cfff1ae.js" crossorigin="anonymous"></script>
   <!-- endinject -->
   <!-- inject:js -->
   <script src={{ asset('template/js/off-canvas.js') }}></script>

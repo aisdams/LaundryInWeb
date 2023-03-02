@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+
 <div class="row">
   
   @error('success')

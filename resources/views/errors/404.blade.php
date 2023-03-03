@@ -48,5 +48,6 @@
             <button><a href="{{ URL::previous() }}">Go Back</a></button>
         </div>
     </div>
+    
 </body>
 </html>

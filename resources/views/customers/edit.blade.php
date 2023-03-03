@@ -1,5 +1,4 @@
 @extends('layout')
-
 @section('content')
   @push('style')
   <link rel="stylesheet" href={{ asset('css/customer.css') }}>
@@ -14,6 +13,7 @@
       </div>
       <form class="forms-sample" action="{{ url ('/data-customer/edit-customer/update-customer/'.$data->id)}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="form-group">
           <h6>Nama Lengkap <span class="text-danger">*</span></h6>
           <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Nama Lengkap..." name="nama" value="{{$data-> nama}}">
@@ -25,6 +25,7 @@
             <option selected disabled>{{$data-> jenis_kelamin}}</option>
             <option value="Laki-laki">Laki-Laki</option>
             <option value="Perempuan">Perempuan</option>
+            </option>
           </select>
         </div>
 

@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
-use App\Models\Customer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class CustomerController extends Controller
+class OutletController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Customer::paginate(10);
-        return view('customers.index',compact('data'));
+        //
     }
 
     /**
@@ -23,7 +19,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.add');
+        //
     }
 
     /**
@@ -31,8 +27,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->all());
-        return redirect("/data-customer")->with('success','Data Customer berhasil diupdate.');
+        //
     }
 
     /**
@@ -48,8 +43,7 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Customer::find($id);
-        return view('customers.edit', compact('data'));
+        //
     }
 
     /**
@@ -57,9 +51,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = Customer::find($id);
-        $data->update($request->all());
-        return redirect("/data-customer")->with('success','Data Customer berhasil diupdate.');
+        //
     }
 
     /**
@@ -67,8 +59,6 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $delete = Customer::findorfail($id);
-        $delete->delete();
-        return back()->with('destroy', "Data Customer Berhasil Di Delete");
+        //
     }
 }

@@ -168,7 +168,7 @@
     </div>
     <div class="form-group">
       
-      <input type="hidden" value="customer" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
+      <input type="hidden" value="admin" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
       @if($errors->has('level'))
       <span class="error">{{ $errors->first('level') }}</span>
       @endif

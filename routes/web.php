@@ -39,13 +39,7 @@ Route::get('/data-karyawan/add-karyawan', [KaryawanController::class, 'create'])
 
 
 // ? Customer
-Route::get('/data-customer', [CustomerController::class, 'index'])->name('data-customer');// customer index
-
-Route::get('/data-customer/add-customer', [CustomerController::class, 'create'])->name('addcustomer'); // add new customer
-Route::post('/data-customer/add-customer/insert-customer', [CustomerController::class, 'store'])->name('insertcustomer');
-
-Route::get('/data-customer/edit-customer/{id}', [CustomerController::class, 'edit'])->name('editcustomer'); // Edit Customer
-Route::post('/data-customer/edit-customer/update-customer/{id}', [CustomerController::class, 'update'])->name('updatecustomer');
+Route::resource('data-customer', CustomerController::class)->middleware('auth');
 
 Route::get('/data-customer/delete-customer/{id}', [CustomerController::class, 'destroy'])->name('deletecustomer'); // delete customer
 // ? End Customer

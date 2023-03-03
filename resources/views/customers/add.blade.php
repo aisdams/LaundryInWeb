@@ -12,7 +12,7 @@
         <h2>Add New Customer</h2>
         {{-- <a href="{{route ('data-customer')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a> --}}
       </div>
-      <form class="forms-sample" action="{{route ('insertcustomer')}}" method="POST">
+      <form class="forms-sample" action="{{ url('data-customer')}}" method="POST">
         @csrf
         <div class="form-group">
           <h6>Nama Lengkap <span class="text-danger">*</span></h6>

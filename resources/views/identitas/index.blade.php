@@ -43,7 +43,6 @@
             </div>
             <div class="row col-2 mt-5">
               <a href="{{ URL::previous() }}" class="btn btn-outline-danger ms-1"><i class="fa-solid fa-circle-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Go Back</a>
-
             </div>
           </div>
 

@@ -26,4 +26,15 @@ class CustomerController extends Controller
         customer::create($request->all());   
         return redirect()->route('data-customer');
     }
+
+    public function edit($id){
+        $data = customer::find($id);
+        return view('customers.edit', compact('data'));
+    }
+
+    public function update(Request $request, $id){
+        $data = customer::find($id);
+        $data->update($request->all());
+        return redirect()->route('data-customer');
+    }
 }

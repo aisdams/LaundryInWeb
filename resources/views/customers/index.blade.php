@@ -17,12 +17,12 @@
           <table class="table table-hover table-striped border rounded-1">
             <thead>
               <tr>
-                <th class="fw-bold">No</th>
-                <th class="fw-bold">Nama</th>
-                <th class="fw-bold">Alamat</th>
-                <th class="fw-bold">Jenis Kelamin</th>
-                <th class="fw-bold">No. Telepon</th>
-                <th class="fw-bold">Action</th>
+                <th class="fw-bold text-center">No</th>
+                <th class="fw-bold text-center">Nama</th>
+                <th class="fw-bold text-center">Alamat</th>
+                <th class="fw-bold text-center">Jenis Kelamin</th>
+                <th class="fw-bold text-center">No. Telepon</th>
+                <th class="fw-bold text-center">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -31,13 +31,21 @@
               @endphp
               @foreach ($data as $idx)
                 <tr>
-                  <td class="fw-semibold">{{$no++}}</td>
-                  <td>{{$idx -> nama}}</td>
-                  <td>{{$idx -> alamat}}</td>
-                  <td>{{$idx -> jenis_kelamin}}</td>
-                  <td>{{$idx -> notelp}}</td>
+                  <td class="fw-semibold text-center fs-6">{{$no++}}</td>
+                  <td class="text-center fs-6">{{$idx -> nama}}</td>
+                  <td class="text-center fs-6">{{$idx -> alamat}}</td>
+                  <td class="text-center fs-6">{{$idx -> jenis_kelamin}}</td>
+                  <td class="text-center fs-6">{{$idx -> notelp}}</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
-                  <td><label class="badge badge-danger">Pending</label></td>
+                  <td class=" d-flex gap-2 justify-content-center text-center">
+                    <a href="{{ url('/data-customer/edit-customer/'.$idx->id)}}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
+                      Edit
+                    </a>
+                    <a href="/delete-customer/{{$idx->id}}" class="btn btn-sm fw-semibold text-white rounded-2 bg-danger">
+                      <i class="fa-solid fa-trash"></i>
+                      Delete
+                    </a>
+                  </td>
                 </tr>
               @endforeach
             </tbody>

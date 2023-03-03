@@ -36,6 +36,10 @@ Route::get('/data-customer', [CustomerController::class, 'index'])->name('data-c
 
 Route::get('/data-customer/add-customer', [CustomerController::class, 'create'])->name('addcustomer'); // add new customer
 Route::post('/data-customer/add-customer/insert-customer', [CustomerController::class, 'store'])->name('insertcustomer');
+
+Route::get('/data-customer/edit-customer/{$id}', [CustomerController::class, 'edit'])->name('editcustomer'); // Edit Customer
+Route::post('/data-customer/edit-customer/update-customer/{$id}', [CustomerController::class, 'update'])->name('updatecustomer');
+
 // ? End Customer
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

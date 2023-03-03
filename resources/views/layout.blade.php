@@ -19,10 +19,6 @@
   <link rel="stylesheet" href={{ asset('template/css/style.css') }}>
   <!-- endinject -->
   <link rel="shortcut icon" href={{asset('asset/logolaundry.png')}} />
-<<<<<<< HEAD
-
-=======
->>>>>>> origin
   @stack('style')
 </head>
 <body>

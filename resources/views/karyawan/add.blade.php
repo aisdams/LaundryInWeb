@@ -9,7 +9,7 @@
   <div class="card">
     <div class="card-body d-flex flex-column gap-4">
       <div class="d-flex justify-content-between">
-        <h2>Add New Customer</h2>
+        <h2>Add New Karyawan</h2>
         {{-- <a href="{{route ('data-customer')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a> --}}
       </div>
       <form class="forms-sample" action="{{route ('insertcustomer')}}" method="POST">

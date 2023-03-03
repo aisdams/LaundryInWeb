@@ -24,7 +24,7 @@ class CustomerController extends Controller
             'alamat' => 'required',
         ]);
         customer::create($request->all());   
-        return redirect()->route('data-customer');
+        return redirect()->route('data-customer')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     public function edit($id){
@@ -35,6 +35,12 @@ class CustomerController extends Controller
     public function update(Request $request, $id){
         $data = customer::find($id);
         $data->update($request->all());
+        return redirect()->route('data-customer')->with('success', 'Data Berhasil Diubah');
+    }
+
+    public function destroy($id){
+        $data = customer::find($id);
+        $data->delete();
         return redirect()->route('data-customer');
     }
 }

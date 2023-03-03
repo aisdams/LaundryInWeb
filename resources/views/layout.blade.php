@@ -49,7 +49,7 @@
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Karyawan</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Customer</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/data-customer">Customer</a></li>
             </ul>
           </div>
         </li>

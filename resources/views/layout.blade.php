@@ -19,7 +19,10 @@
   <link rel="stylesheet" href={{ asset('template/css/style.css') }}>
   <!-- endinject -->
   <link rel="shortcut icon" href={{asset('asset/logolaundry.png')}} />
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin
   @stack('style')
 </head>
 <body>
@@ -67,7 +70,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pages/tables/basic-table.html">
+          <a class="nav-link" href="{{ url('identitas-profile') }}">
             <i class="fa-solid fa-address-card menu-icon"></i>
             <span class="menu-title">Identitas Aplikasi</span>
           </a>
@@ -79,7 +82,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/auth/profile') }}">
+          <a class="nav-link" href="{{ url('/auth/change-profile') }}">
             <i class="fa-solid fa-user menu-icon"></i>
             <span class="menu-title">User Profile</span>
           </a>

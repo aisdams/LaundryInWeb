@@ -22,7 +22,7 @@
               <p class="text-muted mb-1">{{ Auth::user()->level }}</p>
               <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Edit</button>
+                <a href="{{ route('changeprofile') }}" class="text-white"><button type="button" class="btn btn-primary">Edit</button></a>
                 <a href="{{ URL::previous() }}" class="btn btn-outline-danger ms-1">Go Back</a>
               </div>
             </div>

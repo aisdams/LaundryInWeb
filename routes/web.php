@@ -45,7 +45,9 @@ Route::group(['prefix'=>'auth'], function ($router) {
     Route::post('/postregister', [AuthController::class, 'register'])->name('register.post');
     Route::get('/login', [AuthController::class, 'viewlogin'])->name('login');
     Route::post('/postlogin', [AuthController::class, 'login'])->name('login.post');
-    Route::get('/profile', [AuthController::class, 'profile']);
+    Route::get('/profile', [AuthController::class, 'profile'])->middleware('auth');
+    Route::get('/change-profile', [AuthController::class, 'changeprofile'])->name('changeprofile')->middleware('auth');
+    Route::post('/update-profile', [AuthController::class, 'updateprofile'])->name('updateprofile')->middleware('auth');
 });
 
 // check Role User
@@ -58,5 +60,9 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::group(['middleware' => ['login:customer']], function () {
         Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    });
+    
+    Route::get('/identitas-profile', function () {
+        return view('identitas.index');
     });
 });

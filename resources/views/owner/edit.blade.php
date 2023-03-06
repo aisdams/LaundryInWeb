@@ -1,17 +1,17 @@
 @extends('layout')
 @section('content')
   @push('style')
-  <link rel="stylesheet" href={{ asset('css/customer.css') }}>
+  <link rel="stylesheet" href={{ asset('css/owner.css') }}>
   @endpush
 
 <div class="col-md-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body d-flex flex-column gap-4">
       <div class="d-flex justify-content-between">
-        <h2>Add New Customer</h2>
-        <a href="{{ url('data-customer')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a>
+        <h2>Add New Owner</h2>
+        <a href="{{ url('data-owner')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a>
       </div>
-      <form class="forms-sample" action="{{ url('data-customer',$data->id) }}" method="POST">
+      <form class="forms-sample" action="{{ url('data-owner',$data->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

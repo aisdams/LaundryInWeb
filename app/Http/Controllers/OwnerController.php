@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\Models\Customer;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class CustomerController extends Controller
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Customer::paginate(10);
-        return view('customers.index',compact('data'));
+        $data = Owner::paginate(10);
+        return view('owner.index',compact('data'));
     }
 
     /**
@@ -23,7 +23,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.add');
+        return view('owner.add');
     }
 
     /**
@@ -31,8 +31,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->all());
-        return redirect("/data-customer")->with('success','Data Customer berhasil diupdate.');
+        Owner::create($request->all());
+        return redirect("/data-owner")->with('success','Data Owner berhasil diupdate.');
     }
 
     /**
@@ -48,8 +48,8 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Customer::find($id);
-        return view('customers.edit', compact('data'));
+        $data = Owner::find($id);
+        return view('owner.edit', compact('data'));
     }
 
     /**
@@ -57,9 +57,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = Customer::find($id);
+        $data = Owner::find($id);
         $data->update($request->all());
-        return redirect("/data-customer")->with('success','Data Customer berhasil diupdate.');
+        return redirect("/data-owner")->with('success','Data Owner berhasil diupdate.');
     }
 
     /**
@@ -67,8 +67,8 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $delete = Customer::findorfail($id);
+        $delete = Owner::findorfail($id);
         $delete->delete();
-        return back()->with('destroy', "Data Customer Berhasil Di Delete");
+        return back()->with('destroy', "Data Owner Berhasil Di Delete");
     }
 }

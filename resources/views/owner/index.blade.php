@@ -2,15 +2,15 @@
 
 @section('content')
   @push('style')
-  <link rel="stylesheet" href={{ asset('css/customer.css') }}>
+  <link rel="stylesheet" href={{ asset('css/owner.css') }}>
   @endpush
 
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between">
-          <h2>Tabel Data Customer</h2>
-          <a href="{{ url('data-customer/create') }}" class="tbl-btn button btn-primary p-2 rounded-2">Add New Customer</a>
+          <h2>Tabel Data Owner</h2>
+          <a href="{{ url('data-owner/create') }}" class="tbl-btn button btn-primary p-2 rounded-2">Add New Owner</a>
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">
@@ -38,10 +38,10 @@
                   <td class="text-center fs-6">{{$idx->notelp}}</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
                   <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('data-customer/'.$idx->id.'/edit') }}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
+                    <a href="{{ url('data-owner/'.$idx->id.'/edit') }}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
                       Edit
                     </a>
-                    <form action="{{ url('data-customer',$idx->id) }}" method="POST">
+                    <form action="{{ url('data-owner',$idx->id) }}" method="POST">
                       @csrf
                       @method('delete')
                       <button type="submit" class="btn btn-sm fw-semibold text-white rounded-2 bg-danger delete" data-name="{{ $idx->nama }}"><i class="fa-solid fa-trash mr-1" style="font-size: 13px"></i>Delete</button>

@@ -36,8 +36,8 @@ class AuthController extends Controller
             }elseif($user->level == 'karyawan') {
                 return redirect()->intended('karyawan')
                         ->withSuccess('You have Successfully loggedin');
-            }elseif($user->level == 'customer') {
-                return redirect()->intended('customer')
+            }elseif($user->level == 'owner') {
+                return redirect()->intended('owner')
                         ->withSuccess('You have Successfully loggedin');
             }
         }
@@ -45,10 +45,10 @@ class AuthController extends Controller
             // return response()->json($validator->errors(),422);
             return Redirect::back()->withInput()->withErrors($validator)->with('msg', 'Something Wrong');
         }
-        if(!$token=auth()->attempt($validator->validated())) {
-            // return response()->json(['error'=>'Unauthorized'],401);
-            return Redirect::back()->withInput()->withErrors($validator)->with('msg', 'Something Wrong');
-        }
+        // if(!$token=auth()->attempt($validator->validated())) {
+        //     // return response()->json(['error'=>'Unauthorized'],401);
+        //     return Redirect::back()->withInput()->withErrors($validator)->with('msg', 'Something Wrong');
+        // }
         return redirect("/dashboard")->withInput()->withSuccess(['success' => 'User successfully login']);
     }
 

@@ -51,7 +51,7 @@
         </div>
 
         <button type="submit" class="btn btn-success fw-semibold mr-2">Submit</button>
-        <a href="{{url ('/data-karyawan')}}" class="btn btn-light">Cancel</a>
+        <a href="{{url ('/data-user')}}" class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

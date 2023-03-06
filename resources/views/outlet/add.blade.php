@@ -2,7 +2,7 @@
 
 @section('content')
   @push('style')
-  <link rel="stylesheet" href={{ asset('css/owner.css') }}>
+  <link rel="stylesheet" href={{ asset('css/customer.css') }}>
   @endpush
 
 <div class="col-md-12 grid-margin stretch-card">
@@ -29,7 +29,7 @@
           <textarea type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Alamat Lengkap..." name="alamat" ></textarea>
         </div>
         <button type="submit" class="btn btn-success fw-semibold mr-2">Submit</button>
-        <a href="{{url ('/data-customer')}}" class="btn btn-light">Cancel</a>
+        <a href="{{url ('/data-outlet')}}" class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

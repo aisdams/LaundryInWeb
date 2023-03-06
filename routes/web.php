@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\KaryawanController;
 
 /*
@@ -30,15 +30,13 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return view('dashboard');
 });
-
 // * Karyawan
 Route::resource('data-karyawan', KaryawanController::class)->middleware('auth');
 // * End Karyawan
 
-
-// ? Customer
-Route::resource('data-customer', CustomerController::class)->middleware('auth');
-// ? End Customer
+// ? Owner
+Route::resource('data-owner', OwnerController::class)->middleware('auth');
+// ? End Owner
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -60,11 +58,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['login:karyawan']], function () {
         Route::get('karyawan', [KaryawanController::class, 'index'])->name('karyawan');
     });
-    Route::group(['middleware' => ['login:customer']], function () {
-        Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    Route::group(['middleware' => ['login:owner']], function () {
+        Route::get('owner', [OwnerController::class, 'index'])->name('owner');
     });
     
-    Route::get('/identitas-profile', function () {
+    Route::get('/identitas-aplikasi', function () {
         return view('identitas.index');
     });
 });

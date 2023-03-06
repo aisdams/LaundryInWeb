@@ -15,3 +15,9 @@
   font-weight: 600;
   transition: .3s;
 }
+
+#toast-container > .toast-success {
+  background-image: none;
+  background-color: #183188;
+  color: white;
+}

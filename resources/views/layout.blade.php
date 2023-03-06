@@ -48,8 +48,8 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="/data-karyawan">Karyawan</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/data-customer">Customer</a></li>
+              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Karyawan</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/data-owner">Owner</a></li>
             </ul>
           </div>
         </li>
@@ -66,7 +66,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('identitas-profile') }}">
+          <a class="nav-link" href="{{ url('/identitas-aplikasi') }}">
             <i class="fa-solid fa-address-card menu-icon"></i>
             <span class="menu-title">Identitas Aplikasi</span>
           </a>
@@ -78,7 +78,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/auth/change-profile') }}">
+          <a class="nav-link" href="{{ url('/auth/profile') }}">
             <i class="fa-solid fa-user menu-icon"></i>
             <span class="menu-title">User Profile</span>
           </a>
@@ -212,7 +212,7 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                 <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile"/>
-                <span class="nav-profile-name">{{ Auth::user()->username }}</span>
+                <span class="nav-profile-name">{{ Auth::user()->nama }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="{{ url('/auth/profile') }}">

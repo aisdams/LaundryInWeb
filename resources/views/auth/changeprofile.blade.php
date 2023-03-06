@@ -47,7 +47,7 @@
 
     {{-- Hide Value --}}
     <input type="hidden" name="avatar" value="{{asset('/storage/images/'.Auth::user()->avatar)}}">
-    <input type="hidden" value="customer" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
+    <input type="hidden" value="owner" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
       @if($errors->has('level'))
       <span class="error">{{ $errors->first('level') }}</span>
       @endif

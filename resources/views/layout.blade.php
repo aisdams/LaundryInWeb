@@ -48,8 +48,8 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="/data-user">User</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/data-karyawan">Karyawan</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/data-customer">Customer</a></li>
+              <li class="nav-item"> <a class="nav-link" href={{ url('data-karyawan')}}>Karyawan</a></li>
               <li class="nav-item"> <a class="nav-link" href="/data-owner">Owner</a></li>
             </ul>
           </div>
@@ -212,7 +212,7 @@
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile"/>
+                <img src="{{asset('asset/orang1.png')}}" alt="profile"/>
                 <span class="nav-profile-name">{{ Auth::user()->nama }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">

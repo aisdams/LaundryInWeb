@@ -8,12 +8,10 @@ use App\Models\User;
 class KaryawanController extends Controller
 {
     public function index(){
-        $data = user::paginate(10);
-        return view('karyawan.index', compact('data'));
+        return view('dashboard');
     }
 
     public function create(){
-        return view('karyawan.add');
     }
 
     public function store(Request $request)

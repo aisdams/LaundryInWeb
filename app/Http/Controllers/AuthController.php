@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Image;
 use Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -60,10 +61,8 @@ class AuthController extends Controller
 
         $validator = Validator::make($request->all(),[
             'nama'=>'required',
-            'username'=>'required',
             'email'=>'required|string|email|unique:users',
             'level'=>'required',
-            'avatar'=>'required|image|mimes:png,jpg,jpeg|max:2048',
             'notelp'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'password' => [
                 'required',
@@ -88,12 +87,13 @@ class AuthController extends Controller
             ['password'=>bcrypt($request->password)]
         ));
         
-        
-        if($request->hasFile('avatar')){
-            $filename = $request->avatar->getClientOriginalName();
-            $request->avatar->storeAs('images',$filename,'public');
-            Auth()->user()->update(['avatar'=>$filename]);
-        }
+        // if($request->hasFile('avatar')){
+    	// 	$avatar = $request->file('avatar');
+        //     $filename = time().'.'.$request->avatar->extension();
+        //     $filename = $request->avatar->getClientOriginalName();
+        //     $request->avatar->storeAs('images',$filename,'public');
+        //     Auth::user()->update(['avatar'=>$filename]);
+        // }
         // if($request->hasFile('avatar')) {
         //     $request->file('avatar')->move('avatar/', $request->file('avatar')->getClientOriginalName());
         //     $validator->avatar = $request->file('avatar')->getClientOriginalName();
@@ -101,7 +101,7 @@ class AuthController extends Controller
         return redirect("auth/login")->withInput()->withSuccess(['success' => 'User successfully registered']);
         
     }
-    // public function deleteOldAvatar()
+    // protected function deleteOldAvatar()
     // {
     //   if (auth()->user()->avatar){
     //     Storage::delete('/storage/images/'.auth()->user()->avatar);
@@ -124,12 +124,12 @@ class AuthController extends Controller
         if (Hash::check($request->input('old_password'), $old_password)) {
             $user = User::find($user_id);
             $user->nama = $request['nama'];
-            $user->username = $request['username'];
+            $user->email = $request['email'];
             $user->notelp = $request['notelp'];
             $user->password = Hash::make($request['password']);
             
             if ($user->save()) {
-                return Redirect::back()->with('success',' Change Profile Berhasil');
+                return redirect("auth/profile")->with('success',' Change Profile Berhasil');
             }
         }else {
             return Redirect::back()->with('failed', 'Semua Gagal');

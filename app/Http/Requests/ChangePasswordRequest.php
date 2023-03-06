@@ -23,7 +23,6 @@ class ChangePasswordRequest extends FormRequest
     {
         return [
             'nama' => 'string',
-            'username' => 'min:4',
             'email'=>'string|email|unique:users',
             'notelp'=>'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'password' => [

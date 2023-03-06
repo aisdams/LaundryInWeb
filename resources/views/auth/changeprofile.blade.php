@@ -22,32 +22,12 @@
     </div>
   </div>
 
-  @if (Session::get('success'))
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ Session::get('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-  @endif
-
-  @if (Session::get('failed'))
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ Session::get('failed') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-  @endif
-
   <form action="{{ route('updateprofile') }}" method="POST" class="p-5" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
     @csrf
     <h3>Edit Profile</h3>
     <hr class="mb-4" style="background: black"/>
 
     {{-- Hide Value --}}
-    <input type="hidden" name="avatar" value="{{asset('/storage/images/'.Auth::user()->avatar)}}">
-    <input type="hidden" value="owner" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
       @if($errors->has('level'))
       <span class="error">{{ $errors->first('level') }}</span>
       @endif
@@ -62,15 +42,6 @@
           @error('nama')<div class="invalid-feedback">{{ $message }}</div>@enderror
         </div>
       </div>
-      <div class="col-md">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text bg-primary" id="basic-addon1"><i class="fas fa-user"></i></span>
-        </div>
-      <input name="username" type="text" value="" class="input form-control @error('username') is-invalid @enderror" id="username" placeholder="username" aria-label="username" aria-describedby="basic-addon1" />
-      @error('username')<div class="invalid-feedback">{{ $message }}</div>@enderror
-      </div>
-  </div>
     </div>
   <div class="row g-2">
     <div class="col-md">

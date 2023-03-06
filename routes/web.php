@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OutletController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\DataKaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,14 @@ Route::get('/admin', function () {
 });
 // ? end Admin
 
-// ? User
-Route::resource('data-user', UserController::class)->middleware('auth');
-// ? End User
+// ? Karyawan Dashboard
+Route::get('/karyawan', function () {
+    return view('dashboard');
+});
+// ? end Admin
 
-// ? Karyawan
-Route::resource('data-karyawan', KaryawanController::class)->middleware('auth');
+// ? Data Karyawan
+Route::resource('data-karyawan', DataKaryawanController::class)->middleware('auth');
 // ? End Karyawan
 
 // ? Owner
@@ -49,8 +52,6 @@ Route::resource('data-owner', OwnerController::class)->middleware('auth');
 // ? outlet
 Route::resource('data-outlet', OutletController::class)->middleware('auth');
 // ? end outlet
-
-
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

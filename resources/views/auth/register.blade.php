@@ -43,24 +43,6 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail">username</label>
-      <div class="input-group">
-        <div class="input-group-prepend bg-transparent">
-          <span class="input-group-text bg-transparent border-right-0">
-            <i class="mdi mdi-account-outline text-white"></i>
-          </span>
-        </div>
-        <input type="text" class="form-control form-control-lg border-left-0" style="color: white" id="username" placeholder="username" name="username" autofocus>
-        @if($errors->has('username'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('username') }}</span>
-           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-      </div>
-        @endif
-      </div>
-    </div>
-    <div class="form-group">
       <label for="exampleInputEmail">Email</label>
       <div class="input-group">
         <div class="input-group-prepend bg-transparent">
@@ -72,24 +54,6 @@
         @if($errors->has('email'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('email') }}</span>
-           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-      </div>
-        @endif
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail">Choose Image</label>
-      <div class="input-group">
-        {{-- <div class="input-group-prepend bg-transparent">
-          <span class="input-group-text bg-transparent border-right-0">
-            <i class="mdi mdi-account-outline text-white"></i>
-          </span>
-        </div> --}}
-        <input type="file" class="form-control" style="width: 100%; color: white" name="avatar">
-        @if($errors->has('avatar'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <span class="alert-inner--text"><strong>Warning!</strong>{{ $errors->first('avatar') }}</span>
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
       </div>
@@ -167,7 +131,6 @@
       </div>
     </div>
     <div class="form-group">
-      
       <input type="hidden" value="admin" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level" autofocus>
       @if($errors->has('level'))
       <span class="error">{{ $errors->first('level') }}</span>

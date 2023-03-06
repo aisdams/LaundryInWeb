@@ -32,16 +32,12 @@ Route::get('/admin', function () {
 });
 
 // * Karyawan
-Route::get('/data-karyawan', [KaryawanController::class, 'index'])->name('data-karyawan'); // karyawan (user) index
-
-Route::get('/data-karyawan/add-karyawan', [KaryawanController::class, 'create'])->name('addkaryawan'); // add new karyawan (user)
+Route::resource('data-karyawan', KaryawanController::class)->middleware('auth');
 // * End Karyawan
 
 
 // ? Customer
 Route::resource('data-customer', CustomerController::class)->middleware('auth');
-
-Route::get('/data-customer/delete-customer/{id}', [CustomerController::class, 'destroy'])->name('deletecustomer'); // delete customer
 // ? End Customer
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

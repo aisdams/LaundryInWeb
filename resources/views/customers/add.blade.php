@@ -12,7 +12,7 @@
         <h2>Add New Customer</h2>
         {{-- <a href="{{route ('data-customer')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a> --}}
       </div>
-      <form class="forms-sample" action="{{ url('data-customer')}}" method="POST">
+      <form class="forms-sample" action="{{url('/data-customer')}}" method="POST">
         @csrf
         <div class="form-group">
           <h6>Nama Lengkap <span class="text-danger">*</span></h6>
@@ -38,7 +38,7 @@
           <textarea type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Alamat Lengkap..." name="alamat" ></textarea>
         </div>
         <button type="submit" class="btn btn-success fw-semibold mr-2">Submit</button>
-        <a href="{{route ('data-customer')}}" class="btn btn-light">Cancel</a>
+        <a href="{{url ('/data-customer')}}" class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

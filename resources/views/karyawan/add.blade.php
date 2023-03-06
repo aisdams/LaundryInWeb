@@ -12,19 +12,37 @@
         <h2>Add New Karyawan</h2>
         {{-- <a href="{{route ('data-customer')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a> --}}
       </div>
-      <form class="forms-sample" action="{{route ('insertcustomer')}}" method="POST">
+      <form class="forms-sample" action="{{url ('/data-karyawan')}}" method="POST">
         @csrf
+        <div class="form-group">
+          <h6>Id Outlet<span class="text-danger">*</span></h6>
+          <select type="text" class="form-control" id="browsers" placeholder="Pilih Jenis Kelamin" name="outlet_id">
+            <datalist id="browsers">
+              <option selected disabled>Pilih Outlet</option>
+              <option value="karyawan">Karyawan</option>
+              <option value="owner">Owner</option>
+              <option value="admin">Admin</option>
+            </datalist>
+          </select>
+        </div>
+
         <div class="form-group">
           <h6>Nama Lengkap <span class="text-danger">*</span></h6>
           <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Nama Lengkap..." name="nama">
         </div>
 
         <div class="form-group">
-          <h6>jenis Kelamin <span class="text-danger">*</span></h6>
+          <h6>E-mail <span class="text-danger">*</span></h6>
+          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="example@gmail.com" name="email">
+        </div>
+
+        <div class="form-group">
+          <h6>User Level<span class="text-danger">*</span></h6>
           <select type="text" class="form-control" id="exampleInputUsername1" placeholder="Pilih Jenis Kelamin" name="jenis_kelamin">
-            <option selected disabled>Pilih Jenis Kelamin</option>
-            <option value="Laki-laki">Laki-Laki</option>
-            <option value="Perempuan">Perempuan</option>
+            <option selected disabled>Pilih Level User</option>
+            <option value="karyawan">Karyawan</option>
+            <option value="owner">Owner</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
 
@@ -32,13 +50,8 @@
           <h6>Nomor Telepon <span class="text-danger">*</span></h6>
           <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Nomor Telepon..." name="notelp">
         </div>
-
-        <div class="form-group">
-          <h6>Alamat<span class="text-danger">*</span></h6>
-          <textarea type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Alamat Lengkap..." name="alamat" ></textarea>
-        </div>
         <button type="submit" class="btn btn-success fw-semibold mr-2">Submit</button>
-        <a href="{{route ('data-customer')}}" class="btn btn-light">Cancel</a>
+        <a href="{{url ('/data-karyawan')}}" class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

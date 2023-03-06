@@ -15,4 +15,10 @@ class KaryawanController extends Controller
     public function create(){
         return view('karyawan.add');
     }
+
+    public function store(Request $request)
+    {
+        user::create($request->all());
+        return redirect("/data-karyawan")->with('success','Data Karyawan berhasil ditambahkan.');
+    }
 }

@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
         [
-            'nama' => 'admin',
-            'username' => 'aDmInE',
+            'outlet_id' => '1',
+            'nama' => 'aDeMinE',
             'email' => 'admin@admin.com',
             'level' => 'admin',
             'avatar' => 'https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop',
@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456'),
         ],
         [
-            'nama' => 'owner',
-            'username' => 'ouuneerr',
+            'outlet_id' => '1',
+            'nama' => 'owu-neru',
             'email' => 'owner@owner.com',
             'level' => 'owner',
             'avatar' => 'https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop',
@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456'),
         ],
         [
-            'nama' => 'karyawan',
-            'username' => 'kariyawan',
+            'outlet_id' => '1',
+            'nama' => 'kariyawan',
             'email' => 'karyawan@karyawan.com',
             'level' => 'karyawan',
             'avatar' => 'https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop',

@@ -32,7 +32,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         Customer::create($request->all());
-        return redirect("/data-customer")->with('success','Data Customer berhasil diupdate.');
+        return redirect("/data-customer")->with('success','Data Customer berhasil ditambahkan.');
     }
 
     /**

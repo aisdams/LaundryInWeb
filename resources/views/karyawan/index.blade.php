@@ -10,7 +10,7 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <h2>Tabel Data Karyawan</h2>
-          <a href="{{route ('addkaryawan')}}" class="tbl-btn button btn-primary p-2 rounded-2">Add New Karyawan</a>
+          <a href="{{url ('data-karyawan/create')}}" class="tbl-btn button btn-primary p-2 rounded-2">Add New Karyawan</a>
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">

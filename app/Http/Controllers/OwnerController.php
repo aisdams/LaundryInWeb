@@ -69,6 +69,6 @@ class OwnerController extends Controller
     {
         $delete = Owner::findorfail($id);
         $delete->delete();
-        return back()->with('destroy', "Data Owner Berhasil Di Delete");
+        return back()->with('destroy', "Data Owner Berhasil Dihapus");
     }
 }

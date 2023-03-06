@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Outlet;
 
 class OutletController extends Controller
 {
@@ -11,7 +13,8 @@ class OutletController extends Controller
      */
     public function index()
     {
-        //
+        $data = outlet::paginate(10);
+        return view('outlet.index',compact('data'));
     }
 
     /**
@@ -19,7 +22,7 @@ class OutletController extends Controller
      */
     public function create()
     {
-        //
+        return view('outlet.add');
     }
 
     /**
@@ -27,7 +30,8 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        outlet::create($request->all());
+        return redirect("/data-outlet")->with('success','Data Outlet berhasil ditambahkan.');
     }
 
     /**
@@ -43,7 +47,8 @@ class OutletController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = outlet::find($id);
+        return view('outlet.edit', compact('data'));
     }
 
     /**
@@ -51,7 +56,9 @@ class OutletController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = outlet::find($id);
+        $data->update($request->all());
+        return redirect("/data-outlet")->with('success','Data Outlet berhasil diupdate.');
     }
 
     /**
@@ -59,6 +66,8 @@ class OutletController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = outlet::findorfail($id);
+        $delete->delete();
+        return back()->with('destroy', "Data Outlet Berhasil Dihapus");
     }
 }

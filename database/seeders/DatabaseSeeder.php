@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
         [
-            'outlet_id' => '1',
             'nama' => 'aDeMinE',
             'email' => 'admin@admin.com',
             'level' => 'admin',
@@ -36,7 +35,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456'),
         ],
         [
-            'outlet_id' => '1',
             'nama' => 'owu-neru',
             'email' => 'owner@owner.com',
             'level' => 'owner',
@@ -45,7 +43,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456'),
         ],
         [
-            'outlet_id' => '1',
             'nama' => 'kariyawan',
             'email' => 'karyawan@karyawan.com',
             'level' => 'karyawan',

@@ -7,16 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>LaundryInWeb</title>
   <!-- base:css -->
-  <link rel="stylesheet" href={{ asset('template/vendors/mdi/css/materialdesignicons.min.css') }}>
-  <link rel="stylesheet" href={{ asset('template/vendors/css/vendor.bundle.base.css') }}>
+  <link rel="stylesheet" href={{ asset('templateauth/vendors/mdi/css/materialdesignicons.min.css') }}>
+  <link rel="stylesheet" href={{ asset('templateauth/vendors/css/vendor.bundle.base.css') }}>
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href={{ asset('template/css/style.css') }}>
+  <link rel="stylesheet" href={{ asset('templateauth/css/style.css') }}>
   <!-- endinject -->
   <link rel="shortcut icon" href={{asset('asset/logolaundry.png')}} />
-
 </head>
 
 <body>
@@ -57,13 +56,13 @@
   <!-- container-scroller -->
   <!-- base:js -->
   @stack('scriptauth')
-  <script src={{ asset('template/vendors/js/vendor.bundle.base.js') }}></script>
+  <script src={{ asset('templateauth/vendors/js/vendor.bundle.base.js') }}></script>
   <script src="https://kit.fontawesome.com/4d8cfff1ae.js" crossorigin="anonymous"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src={{ asset('template/js/off-canvas.js') }}></script>
-  <script src={{ asset('template/js/hoverable-collapse.js') }}></script>
-  <script src={{ asset('template/js/template.js') }}></script>
+  <script src={{ asset('templateauth/js/off-canvas.js') }}></script>
+  <script src={{ asset('templateauth/js/hoverable-collapse.js') }}></script>
+  <script src={{ asset('templateauth/js/template.js') }}></script>
   <!-- endinject -->
 </body>
 

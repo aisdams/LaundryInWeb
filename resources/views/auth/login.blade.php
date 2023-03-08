@@ -3,11 +3,6 @@
 @section('formnya')
 <form class="pt-3" action="{{ route('login.post') }}" method="POST">
     @csrf
-    @if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    </div>
-    @endif
     @if (Session::has('msg'))
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <span class="alert-inner--text"><strong>Warning!</strong> {!! \Session::get('msg') !!}</span>
@@ -28,7 +23,7 @@
       <div class="input-group">
         <div class="input-group-prepend bg-transparent">
           <span class="input-group-text bg-transparent border-right-0">
-            <i class="mdi mdi-warning-outline text-white"></i>
+            <i class="mdi mdi-account-outline text-white"></i>
           </span>
         </div>
         <input type="text" class="form-control form-control-lg border-left-0" style="color: white" id="email" placeholder="Email" name="email" autofocus>

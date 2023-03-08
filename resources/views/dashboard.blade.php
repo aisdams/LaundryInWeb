@@ -3,334 +3,512 @@
 
 <div class="row">
   
-  @error('success')
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <span class="alert-inner--text"><strong>Warning!</strong> {{ $message }}</span>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span></button>
+    
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="mb-0 font-weight-bold">Kenneth Osborne</h3>
+      <p>Your last login: 21h ago from newzealand.</p>
+    </div>
+    <div class="col-sm-6">
+      <div class="d-flex align-items-center justify-content-md-end">
+        <div class="mb-3 mb-xl-0 pr-1">
+            <div class="dropdown">
+              <button class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3" data-x-placement="top-start">
+                <h6 class="dropdown-header">Last 14 days</h6>
+                <a class="dropdown-item" href="#">Last 21 days</a>
+                <a class="dropdown-item" href="#">Last 28 days</a>
+              </div>
+            </div>
+        </div>
+        <div class="pr-1 mb-3 mr-2 mb-xl-0">
+          <button type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-arrow-forward-outline mr-2"></i>Export</button>
+        </div>
+        <div class="pr-1 mb-3 mb-xl-0">
+          <button type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-info-large-outline mr-2"></i>info</button>
+        </div>
+      </div>
+    </div>
   </div>
-  @enderror
-  @if (session('success'))
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session('success') }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @endif
-    <div class="col-12 col-xl-6 grid-margin stretch-card">
-      <div class="row w-100 flex-grow">
-        <div class="col-md-12 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-title">Website Audience Metrics</p>
-              <p class="text-muted">25% more traffic than previous week</p>
-              <div class="row mb-3">
-                <div class="col-md-7">
-                  <div class="d-flex justify-content-between traffic-status">
-                    <div class="item">
-                      <p class="mb-">Users</p>
-                      <h5 class="font-weight-bold mb-0">93,956</h5>
-                      <div class="color-border"></div>
-                    </div>
-                    <div class="item">
-                      <p class="mb-">Bounce Rate</p>
-                      <h5 class="font-weight-bold mb-0">58,605</h5>
-                      <div class="color-border"></div>
-                    </div>
-                    <div class="item">
-                      <p class="mb-">Page Views</p>
-                      <h5 class="font-weight-bold mb-0">78,254</h5>
-                      <div class="color-border"></div>
-                    </div>
-                  </div>
+  <div class="row  mt-3">
+    <div class="col-xl-5 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Sessions by Channel</h4>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div id="circleProgress6" class="progressbar-js-circle rounded p-3"></div>
                 </div>
-                <div class="col-md-5">
-                  <ul class="nav nav-pills nav-pills-custom justify-content-md-end" id="pills-tab-custom"
-                    role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="pills-home-tab-custom" data-toggle="pill"
-                        href="#pills-health" role="tab" aria-controls="pills-home" aria-selected="true">
-                        Day
-                      </a>
+                <div class="col-lg-6">
+                  <ul class="session-by-channel-legend">
+                    <li>
+                      <div>Firewalls(3)</div>
+                      <div>4(100%)</div>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="pills-profile-tab-custom" data-toggle="pill" href="#pills-career"
-                        role="tab" aria-controls="pills-profile" aria-selected="false">
-                        Week
-                      </a>
+                    <li>
+                      <div>Ports(12)</div>
+                      <div>12(100%)</div>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="pills-contact-tab-custom" data-toggle="pill" href="#pills-music"
-                        role="tab" aria-controls="pills-contact" aria-selected="false">
-                        Month
-                      </a>
+                    <li>
+                      <div>Servers(233)</div>
+                      <div>2(100%)</div>
+                    </li>
+                    <li>
+                      <div>Firewalls(3)</div>
+                      <div>7(100%)</div>
+                    </li>
+                    <li>
+                      <div>Firewalls(3)</div>
+                      <div>6(70%)</div>
                     </li>
                   </ul>
                 </div>
               </div>
-              <canvas id="audience-chart"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-between flex-wrap">
-                <p class="card-title">Weekly Balance</p>
-                <p class="text-success font-weight-medium">20.15 %</p>
-              </div>
-              <div class="d-flex align-items-center flex-wrap mb-3">
-                <h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 mr-3">$22.736</h5>
-                <p class="text-muted mb-0">Avg Sessions</p>
-              </div>
-              <canvas id="balance-chart" height="130"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-between flex-wrap">
-                <p class="card-title">Today Task</p>
-                <p class="text-success font-weight-medium">45.39 %</p>
-              </div>
-              <div class="d-flex align-items-center flex-wrap mb-3">
-                <h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 mr-3">17.247</h5>
-                <p class="text-muted mb-0">Avg Sessions</p>
-              </div>
-              <canvas id="task-chart" height="130"></canvas>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-xl-6 grid-margin stretch-card">
-      <div class="row w-100 flex-grow">
-        <div class="col-md-6 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-title">Regional Load</p>
-              <p class="text-muted">Last update: 2 Hours ago</p>
-              <div class="regional-chart-legend d-flex align-items-center flex-wrap mb-1"
-                id="regional-chart-legend"></div>
-              <canvas height="280" id="regional-chart"></canvas>
+    <div class="col-xl-3 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Events</h4>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="d-flex justify-content-between mb-md-5 mt-3">
+                    <div class="small">Critical</div>
+                    <div class="text-danger small">Error</div>
+                    <div  class="text-warning small">Warning</div>
+                  </div>
+                  <canvas id="eventChart"></canvas>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body pb-0">
-              <div class="d-flex align-items-center mb-4">
-                <p class="card-title mb-0 mr-1">Today activity</p>
-                <div class="badge badge-info badge-pill">2</div>
-              </div>
-              <div class="d-flex flex-wrap pt-2">
-                <div class="mr-4 mb-lg-2 mb-xl-0">
-                  <p>Time On Site</p>
-                  <h4 class="font-weight-bold mb-0">77.15 %</h4>
-                </div>
-                <div>
-                  <p>Page Views</p>
-                  <h4 class="font-weight-bold mb-0">14.15 %</h4>
-                </div>
-              </div>
-            </div>
-            <canvas height="150" id="activity-chart"></canvas>
+      </div>
+    </div>
+    <div class="col-xl-4 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Device stats</h4>
           </div>
-        </div>
-        <div class="col-md-12 stretch-card">
-          <div class="card">
-            <div class="card-body pb-0">
-              <p class="card-title">Server Status 247</p>
-              <div class="d-flex justify-content-between flex-wrap">
-                <p class="text-muted">Last update: 2 Hours ago</p>
-                <div class="d-flex align-items-center flex-wrap server-status-legend mt-3 mb-3 mb-md-0">
-                  <div class="item mr-3">
-                    <div class="d-flex align-items-center">
-                      <div class="color-bullet"></div>
-                      <h5 class="font-weight-bold mb-0">128GB</h5>
-                    </div>
-                    <p class="mb-">Total Usage</p>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="d-flex justify-content-between mb-4">
+                    <div>Uptime</div>
+                    <div class="text-muted">195 Days, 8 hours</div>
                   </div>
-                  <div class="item mr-3">
-                    <div class="d-flex align-items-center">
-                      <div class="color-bullet"></div>
-                      <h5 class="font-weight-bold mb-0">92%</h5>
-                    </div>
-                    <p class="mb-">Memory Usage</p>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div>First Seen</div>
+                    <div class="text-muted">23 Sep 2019, 2.04PM</div>
                   </div>
-                  <div class="item mr-3">
-                    <div class="d-flex align-items-center">
-                      <div class="color-bullet"></div>
-                      <h5 class="font-weight-bold mb-0">16%</h5>
-                    </div>
-                    <p class="mb-">Disk Usage</p>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div>Collected time</div>
+                    <div class="text-muted">23 Sep 2019, 2.04PM</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div>Memory space</div>
+                    <div class="text-muted">168.3GB</div>
+                  </div>
+                  <div class="progress progress-md mt-4">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
             </div>
-            <canvas height="170" id="status-chart"></canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col-xl-3 d-flex grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Financial management review</h4>
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Sessions by Channel</h4>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="font-weight-medium">Empolyee Name</div>
+                    <div class="font-weight-medium">This Month</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Connor Chandler</div>
+                    <div class="small">$ 4909</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Russell Floyd</div>
+                    <div class="small">$857</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Douglas White</div>
+                    <div class="small">$612	</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Alta Fletcher </div>
+                    <div class="small">$233</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Marguerite Pearson</div>
+                    <div class="small">$233</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Leonard Gutierrez</div>
+                    <div class="small">$35</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-secondary font-weight-medium">Helen Benson</div>
+                    <div class="small">$43</div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                      <div class="text-secondary font-weight-medium">Helen Benson</div>
+                      <div class="small">$43</div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Sales Analytics</h4>
+            <button type="button" class="btn btn-sm btn-light">Month</button>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="d-md-flex mb-4">
+                <div class="mr-md-5 mb-4">
+                  <h5 class="mb-1"><i class="typcn typcn-globe-outline mr-1"></i>Online</h5>
+                  <h2 class="text-primary mb-1 font-weight-bold">23,342</h2>
+                </div>
+                <div class="mr-md-5 mb-4">
+                  <h5 class="mb-1"><i class="typcn typcn-archive mr-1"></i>Offline</h5>
+                  <h2 class="text-secondary mb-1 font-weight-bold">13,221</h2>
+                </div>
+                <div class="mr-md-5 mb-4">
+                  <h5 class="mb-1"><i class="typcn typcn-tags mr-1"></i>Marketing</h5>
+                  <h2 class="text-warning mb-1 font-weight-bold">1,542</h2>
+                </div>
+              </div>
+              <canvas id="salesanalyticChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Card Title</h4>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-5">
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Total Earning
+                  </div>
+                  <h2 class="mb-2 mt-2 font-weight-bold">287,493$</h2>
+                  <div class="font-weight-bold">
+                    1.4%  Since Last Month
+                  </div>
+                </div>
+                <hr>
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Total Earning
+                  </div>
+                  <h2 class="mb-2 mt-2  font-weight-bold">87,493</h2>
+                  <div class="font-weight-bold">
+                    5.43%  Since Last Month
+                  </div>
+                </div>
+              </div>
+              <canvas id="barChartStacked"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">E-Commerce Analytics</h4>
+          </div>
+          <div class="row">
+            <div class="col-lg-9">
+              <div class="d-sm-flex justify-content-between">
+                <div class="dropdown">
+                  <button class="btn bg-white btn-sm dropdown-toggle btn-icon-text pl-0" type="button" id="dropdownMenuSizeButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Mon,1 Oct 2019 - Tue,2 Oct 2019
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton4" data-x-placement="top-start">
+                    <h6 class="dropdown-header">Mon,17 Oct 2019 - Tue,25 Oct 2019</h6>
+                    <a class="dropdown-item" href="#">Tue,18 Oct 2019 - Wed,26 Oct 2019</a>
+                    <a class="dropdown-item" href="#">Wed,19 Oct 2019 - Thu,26 Oct 2019</a>
+                  </div>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-sm btn-light mr-2">Day</button>
+                  <button type="button" class="btn btn-sm btn-light mr-2">Week</button>
+                  <button type="button" class="btn btn-sm btn-light">Month</button>
+                </div>
+              </div>
+              <div class="chart-container mt-4">
+                <canvas id="ecommerceAnalytic"></canvas>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="text-success font-weight-bold">Inbound</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">Current</div>
+                  <div class="text-muted">38.34M</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">Average</div>
+                  <div class="text-muted">38.34M</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">Maximum</div>
+                  <div class="text-muted">68.14M</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">60th %</div>
+                  <div class="text-muted">168.3GB</div>
+                </div>
+              </div>
+              <hr>
+              <div class="mt-4">
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="text-success font-weight-bold">Outbound</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">Current</div>
+                  <div class="text-muted">458.77M</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">Average</div>
+                  <div class="text-muted">1.45K</div>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="font-weight-medium">Maximum</div>
+                  <div class="text-muted">15.50K</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="font-weight-medium">60th %</div>
+                  <div class="text-muted">45.5</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Sale Analysis Trend</h4>
+          </div>
+          <div class="mt-2">
+            <div class="d-flex justify-content-between">
+              <small>Order Value</small>
+              <small>155.5%</small>
+            </div>
+            <div class="progress progress-md  mt-2">
+              <div class="progress-bar bg-secondary" role="progressbar" style="width: 80%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="d-flex justify-content-between">
+              <small>Total Products</small>
+              <small>238.2%</small>
+            </div>
+            <div class="progress progress-md  mt-2">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="mt-4 mb-5">
+            <div class="d-flex justify-content-between">
+              <small>Quantity</small>
+              <small>23.30%</small>
+            </div>
+            <div class="progress progress-md mt-2">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <canvas id="salesTopChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 d-flex grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">Project status</h4>
+          </div>
           <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>
-                    User
-                  </th>
-                  <th>
-                    First name
-                  </th>
-                  <th>
-                    Progress
-                  </th>
-                  <th>
-                    Amount
-                  </th>
-                  <th>
-                    Deadline
-                  </th>
-                </tr>
-              </thead>
+            <table class="table">
               <tbody>
                 <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face1.jpg" alt="image"/>
-                  </td>
                   <td>
-                    Herman Beck
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="d-flex">
+                      <img class="img-sm rounded-circle mb-md-0 mr-2" src="{{ asset('template/images/faces/face30.png') }}" alt="profile image">
+                      <div>
+                        <div> Company</div>
+                        <div class="font-weight-bold mt-1">volkswagen</div>
+                      </div>
                     </div>
                   </td>
                   <td>
-                    $ 77.99
+                    Budget
+                    <div class="font-weight-bold  mt-1">$2322 </div>
                   </td>
                   <td>
-                    May 15, 2015
+                    Status
+                    <div class="font-weight-bold text-success  mt-1">88% </div>
+                  </td>
+                  <td>
+                    Deadline
+                    <div class="font-weight-bold  mt-1">07 Nov 2019</div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face2.jpg" alt="image"/>
-                  </td>
                   <td>
-                    Messsy Adam
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="d-flex">
+                      <img class="img-sm rounded-circle mb-md-0 mr-2" src="{{ asset('template/images/faces/face31.png') }}" alt="profile image">
+                      <div>
+                        <div> Company</div>
+                        <div class="font-weight-bold  mt-1">Land Rover</div>
+                      </div>
                     </div>
                   </td>
                   <td>
-                    $245.30
+                    Budget
+                    <div class="font-weight-bold  mt-1">$12022  </div>
                   </td>
                   <td>
-                    July 1, 2015
+                    Status
+                    <div class="font-weight-bold text-success  mt-1">70% </div>
+                  </td>
+                  <td>
+                    Deadline
+                    <div class="font-weight-bold  mt-1">08 Nov 2019</div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face3.jpg" alt="image"/>
-                  </td>
                   <td>
-                    John Richards
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="d-flex">
+                      <img class="img-sm rounded-circle mb-md-0 mr-2" src="{{ asset('template/images/faces/face32.png') }}" alt="profile image">
+                      <div>
+                        <div> Company</div>
+                        <div class="font-weight-bold  mt-1">Bentley </div>
+                      </div>
                     </div>
                   </td>
                   <td>
-                    $138.00
+                    Budget
+                    <div class="font-weight-bold  mt-1">$8,725</div>
                   </td>
                   <td>
-                    Apr 12, 2015
+                    Status
+                    <div class="font-weight-bold text-success  mt-1">87% </div>
+                  </td>
+                  <td>
+                    Deadline
+                    <div class="font-weight-bold  mt-1">11 Jun 2019</div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face4.jpg" alt="image"/>
-                  </td>
                   <td>
-                    Peter Meggik
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="d-flex">
+                      <img class="img-sm rounded-circle mb-md-0 mr-2" src="{{ asset('template/images/faces/face33.png') }}" alt="profile image">
+                      <div>
+                        <div> Company</div>
+                        <div class="font-weight-bold  mt-1">Morgan </div>
+                      </div>
                     </div>
                   </td>
                   <td>
-                    $ 77.99
+                    Budget
+                    <div class="font-weight-bold  mt-1">$5,220 </div>
                   </td>
                   <td>
-                    May 15, 2015
+                    Status
+                    <div class="font-weight-bold text-success  mt-1">65% </div>
+                  </td>
+                  <td>
+                    Deadline
+                    <div class="font-weight-bold  mt-1">26 Oct 2019</div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face5.jpg" alt="image"/>
-                  </td>
                   <td>
-                    Edward
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="d-flex">
+                      <img class="img-sm rounded-circle mb-md-0 mr-2" src="{{ asset('template/images/faces/face34.png" alt="profile image') }}">
+                      <div>
+                        <div> Company</div>
+                        <div class="font-weight-bold  mt-1">volkswagen</div>
+                      </div>
                     </div>
                   </td>
                   <td>
-                    $ 160.25
+                    Budget
+                    <div class="font-weight-bold  mt-1">$2322 </div>
                   </td>
                   <td>
-                    May 03, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face6.jpg" alt="image"/>
+                    Status
+                    <div class="font-weight-bold text-success mt-1">88% </div>
                   </td>
                   <td>
-                    John Doe
+                    Deadline
+                    <div class="font-weight-bold  mt-1">07 Nov 2019</div>
                   </td>
                   <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $ 123.21
-                  </td>
-                  <td>
-                    April 05, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="images/faces/face7.jpg" alt="image"/>
-                  </td>
-                  <td>
-                    Henry Tom
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $ 150.00
-                  </td>
-                  <td>
-                    June 16, 2015
+                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                   </td>
                 </tr>
               </tbody>
@@ -340,50 +518,22 @@
       </div>
     </div>
   </div>
-  <!-- row end -->
-  <div class="row">
-    <div class="col-md-4 grid-margin stretch-card">
-      <div class="card bg-facebook d-flex align-items-center">
-        <div class="card-body py-5">
-          <div
-            class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
-            <i class="mdi mdi-facebook text-white icon-lg"></i>
-            <div class="ml-3 ml-md-0 ml-xl-3">
-              <h5 class="text-white font-weight-bold">2.62 Subscribers</h5>
-              <p class="mt-2 text-white card-text">You main list growing</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 grid-margin stretch-card">
-      <div class="card bg-google d-flex align-items-center">
-        <div class="card-body py-5">
-          <div
-            class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
-            <i class="mdi mdi-google-plus text-white icon-lg"></i>
-            <div class="ml-3 ml-md-0 ml-xl-3">
-              <h5 class="text-white font-weight-bold">3.4k Followers</h5>
-              <p class="mt-2 text-white card-text">You main list growing</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 grid-margin stretch-card">
-      <div class="card bg-twitter d-flex align-items-center">
-        <div class="card-body py-5">
-          <div
-            class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
-            <i class="mdi mdi-twitter text-white icon-lg"></i>
-            <div class="ml-3 ml-md-0 ml-xl-3">
-              <h5 class="text-white font-weight-bold">3k followers</h5>
-              <p class="mt-2 text-white card-text">You main list growing</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- row end -->
 @endsection
+
+@push('scripts')
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+  </script>
+
+  <script>
+    @if (Session::has('success'))
+    toastr.options =
+    {
+      "closeButton" : true,
+      "progressBar" : true
+    }
+    toastr.success("{{ Session::get('success') }}")
+    @endif
+  </script>

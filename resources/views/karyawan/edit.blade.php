@@ -9,12 +9,24 @@
   <div class="card">
     <div class="card-body d-flex flex-column gap-4">
       <div class="d-flex justify-content-between">
-        <h2>Edit New Karyawan</h2>
+        <h2>Edit Data Karyawan</h2>
         <a href="{{ url('data-karyawan')}}" class="tbl-btn-add button btn-info p-2 rounded-2">Back to Table</a>
       </div>
       <form class="forms-sample" action="{{ url('data-karyawan',$karyawan->id) }}" method="POST">
         @csrf
         @method('PUT')
+        <div class="form-group">
+          <h6>Nama Outlet<span class="text-danger">*</span></h6>
+          <select type="text" list="browsers" class="form-control @error('outlet_id') is-invalid @enderror" id="exampleInputUsername1" name="outlet_id"> 
+            <datalist id="browsers">
+              <option selected value="{{$karyawan-> outlet_id}}">{{$karyawan->useroutlet->nama}}</option>
+              @foreach ($outlet as $idx)
+                <option value="{{$idx-> id}}">{{$idx-> nama}}</option>
+              @endforeach
+            </datalist>
+          </select>
+          @error('nama')<div class="invalid-feedback">{{$message}}</div>@enderror
+        </div>
         <div class="form-group">
           <h6>Nama Karyawan <span class="text-danger">*</span></h6>
           <input type="text" class="form-control @error('nama') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nama Karyawan..." value="{{$karyawan-> nama}}" name="nama">
@@ -37,7 +49,7 @@
           @error('notelp')<div class="invalid-feedback">{{$message}}</div>@enderror
         </div>
         <button type="submit" class="btn btn-success fw-semibold mr-2">Submit</button>
-        <a href="{{url ('/data-outlet')}}" class="btn btn-light">Cancel</a>
+        <a href="{{url ('/data-karyawan')}}" class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

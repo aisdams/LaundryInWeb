@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Outlet;
 
 // use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -19,6 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'outlet_id',
         'nama',
         'email',
         'level',
@@ -45,4 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function useroutlet(){
+        return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+    }
 }

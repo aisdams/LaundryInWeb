@@ -15,33 +15,62 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-          <h6>Nama Lengkap <span class="text-danger">*</span></h6>
-          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Nama Lengkap..." name="nama" value="{{$data-> nama}}">
-        </div>
-
-        <div class="form-group">
-          <h6>jenis Kelamin <span class="text-danger">*</span></h6>
-          <select type="text" class="form-control" id="exampleInputUsername1" placeholder="Pilih Jenis Kelamin" name="jenis_kelamin">
-            <option selected disabled>{{$data-> jenis_kelamin}}</option>
-            <option value="Laki-laki">Laki-Laki</option>
-            <option value="Perempuan">Perempuan</option>
-            </option>
+          <h6>Nama Outlet<span class="text-danger">*</span></h6>
+          <select type="text" list="browsers" class="form-control @error('outlet_id') is-invalid @enderror" id="exampleInputUsername1" name="outlet_id"> 
+            <datalist id="browsers">
+              <option selected value="{{$data-> outlet_id}}">{{$data->useroutlet->nama}}</option>
+              @foreach ($outlet as $idx)
+                <option value="{{$idx-> id}}">{{$idx-> nama}}</option>
+              @endforeach
+            </datalist>
           </select>
+          @error('nama')<div class="invalid-feedback">{{$message}}</div>@enderror
         </div>
-
+        <div class="form-group">
+          <h6>Nama Owner <span class="text-danger">*</span></h6>
+          <input type="text" class="form-control @error('nama') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nama Owner..." value="{{$data-> nama}}" name="nama">
+          @error('nama')<div class="invalid-feedback">{{$message}}</div>@enderror
+        </div>
+        <div class="form-group">
+            <h6>Email <span class="text-danger">*</span></h6>
+            <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Email Owner..." value="{{$data-> email}}" name="email">
+            @error('email')<div class="invalid-feedback">{{$message}}</div>@enderror
+        </div>
+        <div class="form-group">
+          <input type="hidden" value="owner" class="form-control form-control-lg border-left-0" style="color: white" id="level" placeholder="level" name="level">
+          @if($errors->has('level'))
+          <span class="error">{{ $errors->first('level') }}</span>
+          @endif
+        </div>
         <div class="form-group">
           <h6>Nomor Telepon <span class="text-danger">*</span></h6>
-          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Nomor Telepon..." name="notelp" value="{{$data-> notelp}}">
-        </div>
-
-        <div class="form-group">
-          <h6>Alamat<span class="text-danger">*</span></h6>
-          <textarea type="text" class="form-control" id="exampleInputUsername1" placeholder="Masukkan Alamat Lengkap..." name="alamat">{{$data-> alamat}}</textarea>
+          <input type="number" class="form-control @error('notelp') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nomor Telepon..." name="notelp" value="{{$data-> notelp}}">
+          @error('notelp')<div class="invalid-feedback">{{$message}}</div>@enderror
         </div>
         <button type="submit" class="btn btn-success fw-semibold mr-2">Submit</button>
-        <a  href="{{url ('/data-customer')}}" class="btn btn-light">Cancel</a>
+        <a href="{{url ('/data-owner')}}" class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+  function password_show_hide() {
+     var x = document.getElementById("password");
+     var show_eye = document.getElementById("show_eye");
+     var hide_eye = document.getElementById("hide_eye");
+     hide_eye.classList.remove("d-none");
+     if (x.type === "password") {
+         x.type = "text";
+         show_eye.style.display = "none";
+         hide_eye.style.display = "block";
+     } else {
+         x.type = "password";
+         show_eye.style.display = "block";
+         hide_eye.style.display = "none";
+     }
+     }
+ </script>
+@endpush

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,11 +16,7 @@ class Outlet extends Model
         'notelp',
     ];
 
-    // public function outletowner(){
-    //     return $this->belongsTo(Owner::class, '', '');
-    // }
-
-    public function outletkaryawan(){
-        return $this->hasMany(Karyawan::class);
+    public function outletuser(){
+        return $this->hasMany(User::class);
     }
 }

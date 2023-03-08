@@ -6,19 +6,16 @@ use Validator;
 use App\Models\User;
 use App\Models\Outlet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 
-class DataKaryawanController extends Controller
+class DataOwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $karyawan = User::where('level', 'karyawan')->get();
-        return view('karyawan.index', compact('karyawan'));
+        $data = User::where('level', 'owner')->get();
+        return view('owner.index', compact('data'));
     }
 
     /**
@@ -27,12 +24,12 @@ class DataKaryawanController extends Controller
     public function create()
     {
         $outlet = Outlet::all();
-        return view('karyawan.add', [
+        return view('owner.add', [
             'outlet' => $outlet
         ]);
     }
 
-    /**
+        /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -65,15 +62,7 @@ class DataKaryawanController extends Controller
             'notelp' => $request->notelp,
             'password' => bcrypt($request->password),
         ]);
-        return redirect("data-karyawan")->with('success', 'Data Karyawan berhasil di tambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect("data-owner")->with('success', 'Data Owner berhasil di tambahkan');
     }
 
     /**
@@ -81,12 +70,12 @@ class DataKaryawanController extends Controller
      */
     public function edit(string $id)
     {
-        $karyawan = User::find($id);
+        $data = User::find($id);
         $outlet = Outlet::all();
-        return view('karyawan.edit', compact('karyawan', 'outlet'));
+        return view('owner.edit', compact('data', 'outlet'));
     }
 
-    /**
+        /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
@@ -103,10 +92,10 @@ class DataKaryawanController extends Controller
             return Redirect::back()->withErrors($validator)->withInput()->with('msg', 'Something Wrong');
         }
 
-        $karyawan = User::findorfail($id);
+        $data = User::findorfail($id);
         $outlet_id = $request->outlet_id;
-        $karyawan->update($request->all());
-        return redirect("data-karyawan")->with('success', 'Data Karyawan berhasil di update');
+        $data->update($request->all());
+        return redirect("data-owner")->with('success', 'Data Owner berhasil di update');
     }
 
     /**
@@ -114,8 +103,8 @@ class DataKaryawanController extends Controller
      */
     public function destroy(string $id)
     {
-        $delete = User::findorfail($id);
-        $delete->delete();
-        return back()->with('destroy', "Data Karyawan Berhasil Di Delete");
+        $data = User::findorfail($id);
+        $data->delete();
+        return back()->with('destroy', "Data Owner Berhasil Di Delete");
     }
 }

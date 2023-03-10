@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Models\User;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,10 @@ class DataKaryawanController extends Controller
      */
     public function create()
     {
-        return view('karyawan.add');
+        $outlet = Outlet::all();
+        return view('karyawan.add', [
+            'outlet' => $outlet
+        ]);
     }
 
     /**
@@ -34,6 +38,7 @@ class DataKaryawanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
+            'outlet_id'=>'required',
             'nama'=>'required|string',
             'email'=>'required|string',
             'level'=>'required|string',
@@ -45,6 +50,7 @@ class DataKaryawanController extends Controller
             return Redirect::back()->withErrors($validator)->withInput()->with('msg', 'Something Wrong');
         }
 
+        $outlet_id = $request->outlet_id;
         $nama = $request->nama;
         $email = $request->email;
         $level = $request->level;
@@ -52,6 +58,7 @@ class DataKaryawanController extends Controller
         $password = bcrypt($request->password);
         
         User::create([
+            'outlet_id' => $request->outlet_id,
             'nama' => $request->nama,
             'email' => $request->email,
             'level' => $request->level,
@@ -75,7 +82,8 @@ class DataKaryawanController extends Controller
     public function edit(string $id)
     {
         $karyawan = User::find($id);
-        return view('karyawan.edit', compact('karyawan'));
+        $outlet = Outlet::all();
+        return view('karyawan.edit', compact('karyawan', 'outlet'));
     }
 
     /**
@@ -84,6 +92,7 @@ class DataKaryawanController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(),[
+            'outlet_id' => 'required',
             'nama'=>'required|string',
             'email'=>'required|string',
             'level'=>'required|string',
@@ -95,6 +104,7 @@ class DataKaryawanController extends Controller
         }
 
         $karyawan = User::findorfail($id);
+        $outlet_id = $request->outlet_id;
         $karyawan->update($request->all());
         return redirect("data-karyawan")->with('success', 'Data Karyawan berhasil di update');
     }

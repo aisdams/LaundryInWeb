@@ -21,7 +21,7 @@
                 <th class="fw-bold text-center">Nama</th>
                 <th class="fw-bold text-center">E-mail</th>
                 <th class="fw-bold text-center">No. Telepon</th>
-                <th class="fw-bold text-center">Role</th>
+                <th class="fw-bold text-center">Outlet</th>
                 <th class="fw-bold text-center">Action</th>
               </tr>
             </thead>
@@ -35,10 +35,10 @@
                     <td class="text-center fs-6">{{$idx -> nama}}</td>
                     <td class="text-center fs-6">{{$idx -> email}}</td>
                     <td class="text-center fs-6">{{$idx -> notelp}}</td>
-                    <td class="text-center fs-6">{{$idx -> level}}</td>
+                    <td class="text-center fs-6">{{$idx -> useroutlet -> nama}}</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
                   <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('data-karyawan/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
+                    <a href="{{ url('data-karyawan/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-white rounded-2 bg-warning mr-2"> <i class="fa-solid fa-pen-to-square"></i>
                       Edit
                     </a>
                     <form action="{{ url('data-karyawan',$idx->id) }}" method="POST">

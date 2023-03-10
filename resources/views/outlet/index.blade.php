@@ -36,7 +36,7 @@
                   <td class="text-center fs-6">{{$idx -> alamat}}</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
                   <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('data-outlet/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
+                    <a href="{{ url('data-outlet/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-white rounded-2 bg-warning mr-2"> <i class="fa-solid fa-pen-to-square text-white"></i>
                       Edit
                     </a>
                     <form action="{{ url('data-outlet',$idx->id) }}" method="POST">

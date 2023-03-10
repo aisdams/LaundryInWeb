@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CelestialUI Admin</title>
     <!-- base:css -->
-    <link rel="stylesheet" href="{{ asset('template/vendors/typicons.font/font/typicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('templatebeda/vendors/typicons.font/font/typicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('templatebeda/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject --> 
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('template/css/vertical-layout-light/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('templatebeda/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('asset/logolaundry.png') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -79,7 +79,7 @@
                 <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('template/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
+                    <img src="{{ asset('templatebeda/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
                     <h6 class="preview-subject ellipsis font-weight-normal">David Grey
@@ -91,7 +91,7 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('template/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
+                    <img src="{{ asset('templatebeda/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
                     <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
@@ -103,7 +103,7 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('template/images/faces/face3.jpg') }}" alt="image" class="profile-pic">
+                    <img src="{{ asset('templatebeda/images/faces/face3.jpg') }}" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow">
                     <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
@@ -220,7 +220,7 @@
           <li class="nav-item">
             <div class="d-flex sidebar-profile">
               <div class="sidebar-profile-image">
-                <img src="{{ asset('template/images/faces/face2.jpg') }}" alt="image">
+                <img src="{{ asset('templatebeda/images/faces/face2.jpg') }}" alt="image">
                 <span class="sidebar-status-indicator"></span>
               </div>
               <div class="sidebar-profile-name">
@@ -259,13 +259,25 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="{{ url('data-karyawan')}}">Karyawan</a>
+                  <a class="nav-link" href={{ url('/data-owner')}}>Owner</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="{{ url('data-customer')}}">Customer</a>
+                  <a class="nav-link" href={{ url('/data-karyawan')}}>Karyawan</a>
                 </li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{ url ('/data-outlet')}}">
+              <i class="fa-solid fa-shop menu-icon"></i>
+              <span class="menu-title">Outlet</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{ url ('/data-customer')}}">
+              <i class="fa-solid fa-users menu-icon"></i>
+              <span class="menu-title">Customers</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="pages/documentation/documentation.html">
@@ -309,7 +321,7 @@
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com</a> 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard </a>templates from Bootstrapdash.com</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard </a>templatebedas from Bootstrapdash.com</span>
             </div>
           </footer>
           <!-- partial -->
@@ -331,23 +343,23 @@
     @stack('scripts')
     <!-- base:js -->
     <script src="https://kit.fontawesome.com/4d8cfff1ae.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('template/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('templatebeda/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="{{ asset('template/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('template/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('template/js/template.js') }}"></script>
-    <script src="{{ asset('template/js/settings.js') }}"></script>
-    <script src="{{ asset('template/js/todolist.js') }}"></script>
+    <script src="{{ asset('templatebeda/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('templatebeda/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('templatebeda/js/templatebeda.js') }}"></script>
+    <script src="{{ asset('templatebeda/js/settings.js') }}"></script>
+    <script src="{{ asset('templatebeda/js/todolist.js') }}"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="{{ asset('template/vendors/progressbar.js/progressbar.min.js') }}"></script>
-    <script src="{{ asset('template/vendors/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('templatebeda/vendors/progressbar.js/progressbar.min.js') }}"></script>
+    <script src="{{ asset('templatebeda/vendors/chart.js/Chart.min.js') }}"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
-    <script src="{{ asset('template/js/dashboard.js') }}"></script>
+    <script src="{{ asset('templatebeda/js/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
   </body>
 </html>

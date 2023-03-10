@@ -13,7 +13,8 @@ class OutletController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $data = outlet::paginate(10);
+        return view('outlet.index', compact('data'));
     }
 
     /**
@@ -21,6 +22,7 @@ class OutletController extends Controller
      */
     public function create()
     {
+        return view('outlet.add');
     }
 
     /**

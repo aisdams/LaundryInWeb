@@ -19,9 +19,9 @@
               <tr>
                 <th class="fw-bold text-center">No</th>
                 <th class="fw-bold text-center">Nama</th>
-                <th class="fw-bold text-center">Alamat</th>
-                <th class="fw-bold text-center">Jenis Kelamin</th>
+                <th class="fw-bold text-center">E-mail</th>
                 <th class="fw-bold text-center">No. Telepon</th>
+                <th class="fw-bold text-center">Nama Outlet</th>
                 <th class="fw-bold text-center">Action</th>
               </tr>
             </thead>
@@ -33,15 +33,15 @@
                 <tr>
                   <td class="fw-semibold text-center fs-6">{{$no++}}</td>
                   <td class="text-center fs-6">{{$idx->nama}}</td>
-                  <td class="text-center fs-6">{{$idx->alamat}}</td>
-                  <td class="text-center fs-6">{{$idx->jenis_kelamin}}</td>
+                  <td class="text-center fs-6">{{$idx->email}}</td>
                   <td class="text-center fs-6">{{$idx->notelp}}</td>
+                  <td class="text-center fs-6">{{$idx->useroutlet->nama}}</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
                   <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('data-owner/'.$idx->id.'/edit') }}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
+                    <a href="{{ url('data-owner/'.$idx->id.'/edit') }}" class="btn btn-sm fw-semibold text-white rounded-2 bg-warning mr-2"> <i class="fa-solid fa-pen-to-square"></i>
                       Edit
                     </a>
-                    <form action="{{ url('data-owner/',$idx->id) }}" method="POST">
+                    <form action="{{ url('data-owner/'.$idx->id) }}" method="POST">
                       @csrf
                       @method('delete')
                       <button type="submit" class="btn btn-sm fw-semibold text-white rounded-2 bg-danger delete" data-name="{{ $idx->nama }}"><i class="fa-solid fa-trash mr-1" style="font-size: 13px"></i>Delete</button>

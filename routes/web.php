@@ -8,6 +8,7 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DataKaryawanController;
+use App\Http\Controllers\DataOwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::resource('data-karyawan', DataKaryawanController::class)->middleware('aut
 // ? End Karyawan
 
 // ? Owner
-Route::resource('data-owner', OwnerController::class)->middleware('auth');
+Route::resource('data-owner', DataOwnerController::class)->middleware('auth');
 // ? End Owner
 
 // ? outlet

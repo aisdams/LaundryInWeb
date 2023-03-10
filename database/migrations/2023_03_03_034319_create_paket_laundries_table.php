@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('outlet_id');
             $table->enum('jenis', ['Kiloan','DryCleaning', 'Gorden','JaketKulit', 'Karpet', 'Sepatu', 'Koper-Tas', 'Boneka', 'Helm', 'SpringBed', 'Lainnya']);
             $table->string('nama_paket');
+            $table->string('harga');
             $table->timestamps();
         });
     }

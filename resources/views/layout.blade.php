@@ -112,7 +112,7 @@
           <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, {{ Auth::user()->nama }}</h4>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
-              <h4 class="mb-0 font-weight-bold d-none d-xl-block">Mar 12, 2019 - Apr 10, 2019</h4>
+              <h4 class="mb-0 font-weight-bold d-none d-xl-block">Website by <a target="_blank" href="https://www.instagram.com/fhrl.s_" class="text-white">Fahril Setyoadi</a></h4>
             </li>
             <li class="nav-item dropdown me-1">
               <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">

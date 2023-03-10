@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\KaryawanController;
@@ -53,6 +54,10 @@ Route::resource('data-owner', DataOwnerController::class)->middleware('auth');
 // ? outlet
 Route::resource('data-outlet', OutletController::class)->middleware('auth');
 // ? end outlet
+
+// ? Customer
+Route::resource('data-customer', CustomerController::class)->middleware('auth');
+// ? end Customer
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Customer;
 
-class PaketLaundries extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = customer::paginate(10);
+        return view('customers.index', compact('data'));
     }
 
     /**
@@ -19,7 +22,7 @@ class PaketLaundries extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.add');
     }
 
     /**
@@ -27,7 +30,8 @@ class PaketLaundries extends Controller
      */
     public function store(Request $request)
     {
-        //
+        customer::create($request->all());
+        return redirect("/data-customer")->with('success','Data Customer berhasil ditambahkan.');
     }
 
     /**
@@ -43,7 +47,8 @@ class PaketLaundries extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = customer::find($id);
+        return view('customers.edit', compact('data'));
     }
 
     /**
@@ -51,7 +56,9 @@ class PaketLaundries extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = customer::find($id);
+        $data->update($request->all());
+        return redirect("/data-customer")->with('success','Data Customer berhasil diupdate.');
     }
 
     /**
@@ -59,6 +66,8 @@ class PaketLaundries extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = customer::findorfail($id);
+        $delete->delete();
+        return back()->with('destroy', "Data Customer Berhasil Dihapus");
     }
 }

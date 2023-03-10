@@ -166,7 +166,7 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link text-white dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
                 <i class="typcn typcn-user-outline mr-0"></i>
-                <span class="nav-profile-name">Evan Morales</span>
+                <span class="nav-profile-name">{{ Auth::user()->nama }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item">
@@ -280,13 +280,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="pages/documentation/documentation.html">
+            <a class="nav-link text-white" href={{ url ('/transaksi') }}>
               <i class="fa-solid fa-money-bill-transfer menu-icon"></i>
               <span class="menu-title">Transaksi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="pages/charts/chartjs.html">
+            <a class="nav-link text-white" href="{{ url ('paket-laundry') }}">
               <i class="fa-solid fa-house-chimney menu-icon"></i>
               <span class="menu-title">Paket Laundry</span>
             </a>

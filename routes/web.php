@@ -6,9 +6,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KaryawanController;
-use App\Http\Controllers\DataKaryawanController;
 use App\Http\Controllers\DataOwnerController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\DataKaryawanController;
+use App\Http\Controllers\PaketLaundriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +27,7 @@ use App\Http\Controllers\DataOwnerController;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,13 +36,13 @@ Route::get('/dashboard', function () {
 // ? Admin
 Route::get('/admin', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 // ? end Admin
 
 // ? Karyawan Dashboard
 Route::get('/karyawan', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 // ? end Admin
 
 // ? Data Karyawan
@@ -53,6 +56,25 @@ Route::resource('data-owner', DataOwnerController::class)->middleware('auth');
 // ? outlet
 Route::resource('data-outlet', OutletController::class)->middleware('auth');
 // ? end outlet
+
+// ? Customer
+Route::resource('data-customer', CustomerController::class)->middleware('auth');
+// ? end Customer
+
+// ? Paket Laundry
+Route::resource('paket-laundry', PaketLaundriesController::class)->middleware('auth');
+// ? end Paket Laundry
+
+// ? Transaksi
+Route::resource('transaksi', TransaksiController::class)->middleware('auth');
+// ? end Transaksi
+
+// Detail Transaksi
+Route::get('/transaksi/detail/{id}',[TransaksiController::class,'detail'])->name('detail');
+// End Detail
+
+// =================== Export PDF =================== //
+Route::get('/transaksi-pdf/{id}', [TransaksiController::class, 'cetakLaporanPDF'])->name('cetak-laporan-pdf');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

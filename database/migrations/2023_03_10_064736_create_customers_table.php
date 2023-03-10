@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('paket_laundries', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('outlet_id');
-            $table->enum('jenis', ['Kiloan','Dry Cleaning', 'Gorden','Jaket Kulit', 'Karpet', 'Sepatu', 'Koper-Tas', 'Boneka', 'Helm', 'SpringBed', 'Lainnya']);
-            $table->string('nama_paket');
-            $table->string('harga');
+            $table->string('nama');
+            $table->text('alamat');
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->string('notelp', 15);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('paket_laundries');
+        Schema::dropIfExists('customers');
     }
 };

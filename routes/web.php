@@ -8,6 +8,7 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataOwnerController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DataKaryawanController;
@@ -25,25 +26,41 @@ use App\Http\Controllers\PaketLaundriesController;
 */
 
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('auth');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->middleware('auth');
+Route::get('/', [DashboardController::class,'userByLevel'])->name('jumlah-user')->middleware('auth');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+Route::get('/jumlah-user/{level}', [DashboardController::class,'userByLevel'])->name('jumlah-user')->middleware('auth');
+
+Route::get('/dashboard', [DashboardController::class,'userByLevel'])->name('jumlah-user')->middleware('auth');
+
+Route::get('/admin', [DashboardController::class,'userByLevel'])->name('jumlah-user')->middleware('auth');
+
+Route::get('/karyawan', [DashboardController::class,'userByLevel'])->name('jumlah-user')->middleware('auth');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware('auth');
+
 
 // ? Admin
-Route::get('/admin', function () {
-    return view('dashboard');
-})->middleware('auth');
+// Route::get('/admin', function () {
+//     return view('dashboard');
+// })->middleware('auth');
 // ? end Admin
 
 // ? Karyawan Dashboard
-Route::get('/karyawan', function () {
-    return view('dashboard');
-})->middleware('auth');
+// Route::get('/karyawan', function () {
+//     return view('dashboard');
+// })->middleware('auth');
 // ? end Admin
+
+// ? Owner
+// Route::get('/owner', function () {
+//     return view('dashboard');
+// })->middleware('auth');
+// ? end Owner
 
 // ? Data Karyawan
 Route::resource('data-karyawan', DataKaryawanController::class)->middleware('auth');
@@ -69,9 +86,20 @@ Route::resource('paket-laundry', PaketLaundriesController::class)->middleware('a
 Route::resource('transaksi', TransaksiController::class)->middleware('auth');
 // ? end Transaksi
 
+
 // Detail Transaksi
 Route::get('/transaksi/detail/{id}',[TransaksiController::class,'detail'])->name('detail');
 // End Detail
+
+// Laporan Transaksi
+Route::get('/laporan/all-data-laporan',[TransaksiController::class,'LaporanSemua'])->middleware('auth');
+Route::get('/tampilan-laporan', function () {
+    return view('awallaporan');
+})->middleware('auth');
+
+Route::get('/laporan-tanggal', [TransaksiController::class, 'laporan'])->name('laporan')->middleware('auth');
+// End Laporan Transaksi
+
 
 // =================== Export PDF =================== //
 Route::get('/transaksi-pdf/{id}', [TransaksiController::class, 'cetakLaporanPDF'])->name('cetak-laporan-pdf');
@@ -91,13 +119,13 @@ Route::group(['prefix'=>'auth'], function ($router) {
 // check Role User
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['login:admin']], function () {
-        Route::get('admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('admin', [DashboardController::class, 'userByLevel'])->name('admin');
     });
     Route::group(['middleware' => ['login:karyawan']], function () {
-        Route::get('karyawan', [KaryawanController::class, 'index'])->name('karyawan');
+        Route::get('karyawan', [DashboardController::class, 'userByLevel'])->name('karyawan');
     });
     Route::group(['middleware' => ['login:owner']], function () {
-        Route::get('owner', [OwnerController::class, 'index'])->name('owner');
+        Route::get('owner', [DashboardController::class, 'userByLevel'])->name('owner');
     });
     
     Route::get('/identitas-aplikasi', function () {

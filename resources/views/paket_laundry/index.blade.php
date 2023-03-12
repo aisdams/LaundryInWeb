@@ -34,7 +34,7 @@
                     <td class="text-center fs-6">{{$idx ->outlet->nama}}</td>
                     <td class="text-center fs-6">{{$idx -> jenis}}</td>
                     <td class="text-center fs-6">{{$idx -> nama_paket}}</td>
-                    <td class="text-center fs-6">IDR. {{number_format($idx -> harga)}}-,</td>
+                    <td class="text-center fs-6">Rp. {{number_format($idx -> harga)}}-,</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
                   <td class=" d-flex gap-2 justify-content-center text-center">
                     <a href="{{ url('paket-laundry/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-white rounded-2 bg-warning mr-2"> <i class="fa-solid fa-pen-to-square"></i>

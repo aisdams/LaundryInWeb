@@ -31,12 +31,12 @@
                             <td>{{$transaksi ->user->nama}}</td> 
                         </tr>
                         <tr>
-                            <th>Kode Invoice</th>
-                            <td>:</td>
-                            <td>{{ $transaksi->kode_invoice }}</td>
                             <th>Berat</th>
                             <td>:</td>
-                            <td>{{ $transaksi->berat }}</td>
+                            <td>{{ $transaksi->berat }}/KG</td>
+                            <th>Keterangan</th>
+                            <td>:</td>
+                            <td>{{ $transaksi->keterangan }}</td>
                         </tr>
                         <tr>
                             <th>Tgl Bayar</th>
@@ -44,7 +44,7 @@
                             <td>{{ $transaksi->tgl_bayar }}</td>
                             <th>biaya tambahan</th>
                             <td>:</td>
-                            <td>{{ $transaksi->biaya_tambahan }}</td>
+                            <td>Rp. {{ number_format($transaksi->biaya_tambahan) }}</td>
                         </tr>
                         <tr>
                             <th>Status</th>
@@ -57,21 +57,19 @@
                         <tr>
                             <th>Diskon</th>
                             <td>:</td>
-                            <td>{{ $transaksi->diskon }}</td>
+                            <td>{{ $transaksi->diskon }}%</td>
                             <th>total</th>
                             <td>:</td>
-                            <td>{{ $transaksi->total }}</td>
-                        </tr>
-                        <tr>
-                            <th>Keterangan</th>
-                            <td>:</td>
-                            <td>{{ $transaksi->keterangan }}</td>
+                            <td>Rp. {{ number_format($transaksi->total) }}</td>
                         </tr>
                     </tbody>
                 </table>
                </div>
                
             </div>
+
+            
+            <a class="btn btn-danger mt-5" href="{{ route('cetak-laporan-pdf', $transaksi->id) }}" style="font-size: 14px"><i class="mr-2 fa-solid fa-file-pdf" ></i>PDF</a>
         </div>
     </div>
 </div>

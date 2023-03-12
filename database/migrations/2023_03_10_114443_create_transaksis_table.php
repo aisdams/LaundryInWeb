@@ -12,20 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaksis', function (Blueprint $table) {
-            $table->id();
-            $table->foreignID('outlet_id');
-            $table->foreignID('customer_id');
-            $table->foreignID('paketlaundry_id');
-            $table->foreignID('user_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('outlet_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('paketlaundry_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('kode_invoice')->nullable();
             $table->datetime('tgl');
             $table->datetime('tgl_bayar');
-            $table->integer('berat')->nullable();
-            $table->integer('biaya_tambahan')->nullable();
-            $table->integer('total')->nullable();
-            $table->string('diskon')->nullable();
+            $table->decimal('berat', 8, 2);
+            $table->decimal('biaya_tambahan', 10, 2)->default(0);
+            $table->decimal('total', 10, 2);
+            $table->decimal('diskon', 5, 2)->default(0);
             $table->enum('status', ['proses','selesai','diambil']);
-            $table->enum('dibayar', ['dibayar','belum bayar']);
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

@@ -13,48 +13,80 @@
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">
-          <table class="table table-hover table-striped border rounded-1">
+          <table class="table table-hover table-striped border rounded-1 table-sm">
             <thead>
               <tr>
-                <th class="fw-bold text-center">No</th>
-                <th class="fw-bold text-center">Outlet</th>
-                <th class="fw-bold text-center">Customer</th>
-                <th class="fw-bold text-center">Paket Laundry</th>
-                <th class="fw-bold text-center">Nama Penginput</th>
-                <th class="fw-bold text-center">Status</th>
-                <th class="fw-bold text-center">Keterangan</th>
-                <th class="fw-bold text-center">diskon</th>
-                <th class="fw-bold text-center">Total</th>
-                <th class="fw-bold text-center">Action</th>
+                <th class="fw-bold text-center" style="font-size: 15px">No</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Outlet</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Customer</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Paket Laundry</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Nama Penginput</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Status</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Keterangan</th>
+                <th class="fw-bold text-center" style="font-size: 15px">diskon</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Total</th>
+                <th class="fw-bold text-center" style="font-size: 15px">Action</th>
               </tr>
             </thead>
             <tbody>
-              @php
-                $no = 1;
-              @endphp
-              @foreach ($transaksi as $idx)
+              @foreach($transaksi as $t)
                 <tr>
-                    <td class="fw-semibold text-center fs-6">{{$no++}}</td>
-                    <td class="text-center fs-6">{{$idx ->outlet->nama}}</td>
-                    <td class="text-center fs-6">{{$idx ->customer->nama}}</td>
-                    <td class="text-center fs-6">{{$idx ->paketlaundry->jenis}}</td>
-                    <td class="text-center fs-6">{{$idx ->user->nama}}</td>
-                    <td class="text-center fs-6">{{$idx -> status}}</td>
-                    <td class="text-center fs-6">{{$idx -> keterangan}}</td>
-                    <td class="text-center fs-6">{{$idx -> diskon}}</td>
-                    <td class="text-center fs-6">IDR. {{number_format($idx->total)}}</td>
-                    {{-- <td class="text-center fs-6">{{$idx ->paketlaundry->jenis * $idx->berat}}</td> --}}
-                  {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
-                  <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('/transaksi/detail/'.$idx->id)}}" class="btn btn-sm fw-semibold text-white rounded-2 bg-warning mr-2"><i
-                      class="fas fa-eye"></i>Detail</a>
-                      <a href="{{ route('cetak-laporan-pdf', $idx->id) }}" class="btn btn-sm btn-primary">Cetak PDF</a>
-                    <form action="{{ url('paket-laundry',$idx->id) }}" method="POST">
+                    <td class="fw-semibold text-center fs-6">{{ $loop->iteration }}</td>
+                    <td class="text-center fs-6">{{$t ->outlet->nama}}</td>
+                    <td class="text-center fs-6">{{$t ->customer->nama}}</td>
+                    <td class="text-center fs-6">{{$t ->paketlaundry->jenis}}</td>
+                    <td class="text-center fs-6">{{$t ->user->nama}}</td>
+                    <td>
+                      {{$t->status}}
+                      <!-- Modal Edit Status -->
+                            <div class="modal fade" id="editStatusModal{{$t->id}}" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel{{$t->id}}" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="editStatusModalLabel{{$t->id}}">Edit Status Transaksi</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <form action="{{ route('transaksi.update', $t->id) }}" method="POST">
+                                              @csrf
+                                              @method('PUT')
+                                              <div class="form-group">
+                                                  <label for="status">Status</label>
+                                                  <select name="status" class="form-control">
+                                                      <option value="proses" {{ $t->status == "proses" ? "selected" : "" }}>proses</option>
+                                                      <option value="selesai" {{ $t->status == "selesai" ? "selected" : "" }}>selesai</option>
+                                                  </select>
+                                              </div>
+                                              <button type="submit" class="btn btn-primary">Ubah</button>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                    </td>
+                    <td class="text-center fs-6">{{$t -> keterangan}}</td>
+                    <td class="text-center fs-6">{{$t -> diskon}}%</td>
+                    <td class="text-center fs-6">Rp. {{number_format($t->total)}}</td>
+                    <td class="text-center fs-6">
+                      <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;border: none;position: relative !important;"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; box-shadow: rgba(66, 12, 214, 0.4) 5px 5px">
+                    {{-- Button Action --}}
+                      <button type="button"  class="dropdown-item mb-1" style="background: none;border: none;font-size: 14px" data-toggle="modal" data-target="#editStatusModal{{$t->id}}">
+                        <i class="mr-2 fa-solid fa-pen-to-square text-warning"></i>
+                        Edit
+                    </button>
+                      <a class="dropdown-item mb-1" href="{{ url('/transaksi/detail/'.$t->id)}}" style="font-size: 14px"><i
+                        class="mr-2 fas fa-eye text-success"></i>Detail</a>
+                      <form action="{{ url('paket-laundry',$t->id) }}" method="POST">
                       @csrf
                       @method('delete')
-                      <button type="submit" class="btn btn-sm fw-semibold text-white rounded-2 bg-danger delete" data-name="{{ $idx->nama }}"><i class="fa-solid fa-trash mr-1" style="font-size: 13px"></i>Delete</button>
+                      <button type="submit" class="dropdown-item delete" data-name="{{ $t->nama }}"  style="background-color: transparent;border: none;font-size: 14px"><i class="mr-2 fa-solid fa-trash text-danger"></i>Delete</button>
                     </form>
-                  </td>
+                    {{-- End Button Action --}}
+                    </div>
+                    </td>
                 </tr>
               @endforeach
             </tbody>
@@ -71,6 +103,59 @@
   @endsection
   
 @push('scripts')
+<script>
+  // Ambil elemen HTML yang dibutuhkan
+  const editBtns = document.querySelectorAll('.edit-btn');
+  const editOptionsList = document.querySelectorAll('.edit-options');
+  const updateBtns = document.querySelectorAll('.update-btn');
+
+  // Sembunyikan opsi edit saat halaman dimuat
+  editOptionsList.forEach(editOptions => editOptions.style.display = 'none');
+
+  // Tambahkan event listener pada semua tombol edit
+  editBtns.forEach((editBtn, index) => {
+    const editOptions = editOptionsList[index];
+    const updateBtn = updateBtns[index];
+    const statusText = editBtn.previousElementSibling;
+
+    editBtn.addEventListener('click', function() {
+      // Tampilkan opsi edit jika sebelumnya disembunyikan, atau sebaliknya
+      if (editOptions.style.display === 'none') {
+        editOptions.style.display = 'block';
+      } else {
+        editOptions.style.display = 'none';
+      }
+    });
+
+    updateBtn.addEventListener('click', function() {
+      // Ambil nilai radio button yang dipilih
+      const status = editOptions.querySelector('input[name="status"]:checked').value;
+
+      // Kirim permintaan update status ke server
+      const id = statusText.parentNode.dataset.id;
+      fetch(`/update-status/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({status: status})
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Tampilkan kembali teks status dengan nilai yang baru
+        statusText.textContent = data.status;
+
+        // Sembunyikan opsi edit
+        editOptions.style.display = 'none';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  });
+</script>
+
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

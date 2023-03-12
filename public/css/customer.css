@@ -21,3 +21,28 @@
   background-color: #183188;
   color: white;
 }
+
+  button#dropdownMenuButton i {
+    font-size: 1rem;
+    color: #000;
+  }
+
+  .dropdown-toggle::after {
+    display: none;
+  }
+
+  .dropdown-toggle::before {
+    content: "";
+    font-size: 1.5rem;
+    color: #000;
+    margin-right: 5px;
+  }
+    button#dropdownMenuButton {
+    position: relative; /* tambahkan properti position relative pada button */
+    z-index: 1; /* tambahkan properti z-index pada button agar muncul di depan dropdown */
+  }
+
+.dropdown-menu {
+  position: absolute; /* tambahkan properti position absolute pada dropdown */
+  top: calc(30% + 5px) !important; /* atur jarak dropdown dari button dengan properti top */
+}

@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('paket_laundries', function (Blueprint $table) {
-            $table->id();
-            $table->foreignID('outlet_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('outlet_id');
             $table->enum('jenis', ['Kiloan','Dry Cleaning', 'Gorden','Jaket Kulit', 'Karpet', 'Sepatu', 'Koper-Tas', 'Boneka', 'Helm', 'SpringBed', 'Lainnya']);
             $table->string('nama_paket');
-            $table->string('harga');
+            $table->decimal('harga', 10, 2);
             $table->timestamps();
         });
     }

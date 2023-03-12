@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('owners', function (Blueprint $table) {
-            $table->id();
-            $table->foreignID('outlet_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('outlet_id');
             $table->string('nama');
             $table->string('alamat');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);

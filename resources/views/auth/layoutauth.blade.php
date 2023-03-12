@@ -37,7 +37,7 @@
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo" style="display: flex;gap: 2rem">
                 <img src={{ asset('asset/logolaundry.png') }} alt="logo" style="width: 90px;height: auto;border-radius: 60%;object-fit: contain">
-                <h2 style="position: relative;top: 2rem;">LaundryInAja</h2>
+                <h2 style="position: relative;top: 2rem;">LaundryInWeb</h2>
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">@yield('judulnya')</h6>

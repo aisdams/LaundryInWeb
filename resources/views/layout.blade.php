@@ -250,6 +250,7 @@
               <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
             </a>
           </li>
+          @if (auth()->user()->level == "admin")
           <li class="nav-item">
             <a class="nav-link text-white" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="fa-solid fa-users-gear menu-icon"></i>
@@ -267,30 +268,39 @@
               </ul>
             </div>
           </li>
+          @endif
+          @if (auth()->user()->level == "admin")
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ url ('/data-outlet')}}">
               <i class="fa-solid fa-shop menu-icon"></i>
               <span class="menu-title">Outlet</span>
             </a>
           </li>
+          @endif
+          @if (auth()->user()->level == "admin")
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ url ('/data-customer')}}">
               <i class="fa-solid fa-users menu-icon"></i>
               <span class="menu-title">Customers</span>
             </a>
           </li>
+          @endif
+          @if (auth()->user()->level == "admin" || auth()->user()->level == "karyawan")
           <li class="nav-item">
             <a class="nav-link text-white" href={{ url ('/transaksi') }}>
               <i class="fa-solid fa-money-bill-transfer menu-icon"></i>
               <span class="menu-title">Transaksi</span>
             </a>
           </li>
+          @endif
+          @if (auth()->user()->level == "admin")
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ url ('paket-laundry') }}">
               <i class="fa-solid fa-house-chimney menu-icon"></i>
               <span class="menu-title">Paket Laundry</span>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ url('/identitas-aplikasi') }}">
               <i class="fa-solid fa-address-card menu-icon"></i>
@@ -298,7 +308,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="pages/icons/mdi.html">
+            <a class="nav-link text-white" href="{{ url('/tampilan-laporan') }}">
               <i class="fa-solid fa-book menu-icon"></i>
               <span class="menu-title">Laporan</span>
             </a>

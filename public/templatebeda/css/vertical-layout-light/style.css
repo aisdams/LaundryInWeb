@@ -8674,7 +8674,7 @@
   --gray-lighter: #e8eff4;
   --gray-lightest: #e6e9ed;
   --black: #000000;
-  --primary: #f2125e;
+  --primary: #2d00cf;
   --secondary: #392ccd;
   --success: #17c964;
   --info: #2b80ff;
@@ -10952,13 +10952,13 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #f2125e;
-  border-color: #f2125e;
+  background-color: #3d46d3;
+  border-color: #3d46d3;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #d20c4f;
+  background-color: #3d46d3;
   border-color: #c60b4a;
 }
 
@@ -10975,7 +10975,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #c60b4a;
+  background-color: #3d46d3;
   border-color: #ba0a46;
 }
 
@@ -13454,7 +13454,7 @@ a.badge:hover, a.badge:focus {
 
 .badge-primary {
   color: #fff;
-  background-color: #f2125e;
+  background-color: #3d46d3;
 }
 
 a.badge-primary:hover, a.badge-primary:focus {

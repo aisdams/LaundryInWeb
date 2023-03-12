@@ -14,7 +14,7 @@
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">
-          <table class="table table-hover table-striped border rounded-1">
+          <table class="table table-hover table-striped border rounded-1" id="myTable">
             <thead>
               <tr>
                 <th class="fw-bold text-center">No</th>
@@ -38,7 +38,7 @@
                     <td class="text-center fs-6">{{$idx -> alamat}}</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
                   <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('data-customer/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
+                    <a href="{{ url('data-customer/'.$idx->id.'/edit')}}" class="btn mr-2 btn-sm fw-semibold text-dark rounded-2 bg-warning"> <i class="fa-solid fa-pen-to-square"></i>
                       Edit
                     </a>
                     <form action="{{ url('data-customer',$idx->id) }}" method="POST">
@@ -69,32 +69,39 @@
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
   </script>
 
-<script>
-            
-  $('.delete').click(function(event) {
-  var form =  $(this).closest("form");
-  var name = $(this).data("name");
-  event.preventDefault();
-  swal({
-      title: `Are you sure you want to delete ${name}?`,
-      text: "If you delete this, it will be gone forever.",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-  })
-  .then((willDelete) => {
-    if (willDelete) {
-      form.submit();
-      swal("Data berhasil di hapus", {
-            icon: "success",
-            });
-    }else 
-    {
-      swal("Data tidak jadi dihapus");
-    }
+  
+  <script>
+    $(document).ready(function() {
+      $('#myTable').DataTable();
+    });
+  </script>
+
+  <script>
+              
+    $('.delete').click(function(event) {
+    var form =  $(this).closest("form");
+    var name = $(this).data("name");
+    event.preventDefault();
+    swal({
+        title: `Are you sure you want to delete ${name}?`,
+        text: "If you delete this, it will be gone forever.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        form.submit();
+        swal("Data berhasil di hapus", {
+              icon: "success",
+              });
+      }else 
+      {
+        swal("Data tidak jadi dihapus");
+      }
+    });
   });
-});
-</script>
+  </script>
 
   <script>
     @if (Session::has('success'))

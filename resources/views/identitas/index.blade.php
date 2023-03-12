@@ -18,32 +18,33 @@
           </div>
           <div class="row p-5 ">
             <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">Nama Aplikasi</label>
-              <div class="col-sm-10">
+              <label for="staticEmail" class="col-12 col-form-label">Nama Aplikasi</label>
+              <div class="col mr-2">
                 <input type="text" readonly class="form-control" id="staticEmail" value="LaundryInWeb">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Alamat Lengkap</label>
-              <div class="col-sm-10">
+              <label for="inputPassword" class="col-12 col-form-label">Alamat Lengkap</label>
+              <div class="col">
                 <input type="text" readonly class="form-control" id="staticEmail" value="Jalan Haji Hasyim">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
-              <div class="col-sm-10">
+              <label for="inputPassword" class="col-12 col-form-label">Email</label>
+              <div class="col mr-2">
                 <input type="text" readonly class="form-control" id="staticEmail" value="laundryinweb@gmail.com">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Telphone</label>
-              <div class="col-sm-10">
+              <label for="inputPassword" class="col-12 col-form-label">Telphone</label>
+              <div class="col">
                 <input type="text" readonly class="form-control" id="staticEmail" value="081234567891">
               </div>
             </div>
-            <div class="row col-2 mt-5">
-              <a href="{{ URL::previous() }}" class="btn btn-outline-danger ms-1"><i class="fa-solid fa-circle-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Go Back</a>
-            </div>
+          </div>
+          
+          <div class="row col-2"  style="position: relative;top: -30px">
+            <a href="{{ URL::previous() }}" class="btn btn-outline-danger ms-1"><i class="fa-solid fa-circle-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Go Back</a>
           </div>
 
         </div>

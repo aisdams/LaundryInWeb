@@ -73,27 +73,15 @@
         <input type="number" class="form-control" placeholder="Masukkan Biaya Tambahan ..." name="biaya_tambahan">
       </div>
       {{--  --}}
-      <div class="form-group">
+      {{-- <div class="form-group">
         <h6>Diskon<span class="text-danger">*</span></h6>
         <input type="number" class="form-control " placeholder="Masukkan Diskon ..." name="diskon">
-      </div>
+      </div> --}}
       {{--  --}}
       <div class="form-group">
         <h6>Status<span class="text-danger">*</span></h6>
         <select class="form-control form-select" name="status">
-          <option selected disabled>Pilih Status</option>
-          <option value="proses">proses</option>
-          <option value="selesai">selesai</option>
-          <option value="diambil">diambil</option>
-        </select>
-      </div>
-      {{--  --}}
-      <div class="form-group">
-        <h6>Dibayar<span class="text-danger">*</span></h6>
-        <select class="form-control form-select" name="dibayar">
-          <option selected disabled>Pilih Status Pembayaran</option>
-          <option value="dibayar">dibayar</option>
-          <option value="belum bayar">belum bayar</option>
+          <option selected value="proses">proses</option>
         </select>
       </div>
       {{--  --}}

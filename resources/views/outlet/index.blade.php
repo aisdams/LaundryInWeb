@@ -14,7 +14,7 @@
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">
-          <table class="table table-hover table-striped border rounded-1">
+          <table class="table table-hover table-striped border rounded-1" id="outlet">
             <thead>
               <tr>
                 <th class="fw-bold text-center">No</th>
@@ -60,12 +60,13 @@
 @endsection
 
 @push('scripts')
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-  </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+  $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 
 <script>
             
@@ -94,26 +95,48 @@
 });
 </script>
 
-  <script>
-    @if (Session::has('success'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-    toastr.success("{{ Session::get('success') }}")
-    @endif
-  </script>
+<script>
+  $(function () {
+      $('#outlet').DataTable().fnDestroy({
+          columnDefs: [{
+              paging: true,
+              scrollX: true,
+              lengthChange: true,
+              searching: true,
+              ordering: true,
+              targets: [1, 2, 3, 4],
+          }, ],
+      });
+      $('button').click(function () {
+          var data = table.$('input, select', 'button', 'form').serialize();
+          return false;
+      });
+      table.columns().iterator('column', function (ctx, idx) {
+          $(table.column(idx).header()).prepend('<span class="sort-icon"/>');
+      });
+  });
+</script>
 
-  <script>
-    @if (Session::has('destroy'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-    toastr.success("{{ Session::get('destroy') }}")
-    @endif
-  </script>
+<script>
+  @if (Session::has('success'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+  toastr.success("{{ Session::get('success') }}")
+  @endif
+</script>
+
+<script>
+  @if (Session::has('destroy'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+  toastr.success("{{ Session::get('destroy') }}")
+  @endif
+</script>
 
 @endpush

@@ -85,7 +85,6 @@
         							<td class="text-center"><strong>Jenis Paket Laundry</strong></td>
         							<td class="text-right"><strong>Berat</strong></td>
         							<td class="text-right"><strong>Biaya Tambahan</strong></td>
-        							<td class="text-right"><strong>Diskon</strong></td>
         							<td class="text-right"><strong>Status</strong></td>
         							<td class="text-right"><strong>Dibayar</strong></td>
         							<td class="text-right"><strong>Total</strong></td>
@@ -99,9 +98,8 @@
     								<td class="text-center">{{$transaksi ->paketlaundry->jenis}}</td>
     								<td class="text-right">{{$transaksi ->berat}}</td>
                                     <td class="text-right">Rp. {{number_format($transaksi ->biaya_tambahan)}}</td>
-                                    <td class="text-right">{{$transaksi ->diskon}}%</td>
                                     <td class="text-right">{{$transaksi ->status}}</td>
-                                    <td class="text-right">{{$transaksi ->dibayar}}</td>
+                                    <td class="text-right">Lunas</td>
                                     <td class="text-right">Rp. {{number_format($transaksi ->total)}}</td>
     							</tr>
     						</tbody>

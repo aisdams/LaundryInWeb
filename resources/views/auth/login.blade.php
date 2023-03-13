@@ -72,12 +72,6 @@
     <div class="my-2">
       <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn" href="index.html" style="background-color: #E8D5C4">LOGIN</button>
     </div>
-    <div class="text-center mb-2">OR</div>
-    <div class="mb-2 d-flex">
-      <button type="button" class="btn btn-google auth-form-btn flex-grow ml-1">
-        <i class="mdi mdi-google mr-2"></i>Google
-      </button>
-    </div>
     <div class="text-center mt-4 font-weight-light">
       Don't have an account? <a href="/auth/register" class="text-white " style="font-weight: bold">Create</a>
     </div>

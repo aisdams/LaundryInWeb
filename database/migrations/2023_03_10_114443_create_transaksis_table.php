@@ -15,10 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('outlet_id');
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('paketlaundry_id');
+            $table->unsignedBigInteger('paketlaundry_id')->nullable()->default(0);
             $table->unsignedBigInteger('user_id');
-            $table->string('kode_invoice')->nullable();
-            $table->datetime('tgl');
             $table->datetime('tgl_bayar');
             $table->decimal('berat', 8, 2);
             $table->decimal('biaya_tambahan', 10, 2)->default(0);
@@ -27,6 +25,11 @@ return new class extends Migration
             $table->enum('status', ['proses','selesai','diambil']);
             $table->text('keterangan')->nullable();
             $table->timestamps();
+
+            $table->foreign('outlet_id')->references('id')->on('outlets');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('paketlaundry_id')->references('id')->on('paket_laundries');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

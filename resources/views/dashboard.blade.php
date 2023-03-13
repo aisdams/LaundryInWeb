@@ -4,7 +4,6 @@
 <div class="row">
   <h3 class="mb-3">{{Auth::user()->nama}}</h3>
 </div>
-
 <div class="container card py-3">
   
 <div class="total-user">
@@ -15,7 +14,8 @@
               <div class="col-6 col-md-4">
                   <div class="card mb-3">
                       <div class="card-body">
-                          <h6 class="card-title"><i class="fa-solid fa-user mr-2"></i>{{ $level }}</h6>
+                          <h6 class="card-title">
+                            <i class="fa-solid fa-user mr-2"></i>{{ $level }}</h6>
                           <p class="card-text">{{ $count }}</p>
                       </div>
                   </div>

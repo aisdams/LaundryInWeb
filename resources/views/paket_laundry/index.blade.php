@@ -13,7 +13,7 @@
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">
-          <table class="table table-hover table-striped border rounded-1">
+          <table class="table table-hover table-striped border rounded-1" id="paketlaundry">
             <thead>
               <tr>
                 <th class="fw-bold text-center">No</th>
@@ -36,15 +36,18 @@
                     <td class="text-center fs-6">{{$idx -> nama_paket}}</td>
                     <td class="text-center fs-6">Rp. {{number_format($idx -> harga)}}-,</td>
                   {{-- <td class="text-danger">{{$idx ->}}<i class="mdi mdi-arrow-down"></i></td> --}}
-                  <td class=" d-flex gap-2 justify-content-center text-center">
-                    <a href="{{ url('paket-laundry/'.$idx->id.'/edit')}}" class="btn btn-sm fw-semibold text-white rounded-2 bg-warning mr-2"> <i class="fa-solid fa-pen-to-square"></i>
-                      Edit
-                    </a>
-                    <form action="{{ url('paket-laundry',$idx->id) }}" method="POST">
-                      @csrf
-                      @method('delete')
-                      <button type="submit" class="btn btn-sm fw-semibold text-white rounded-2 bg-danger delete" data-name="{{ $idx->nama }}"><i class="fa-solid fa-trash mr-1" style="font-size: 13px"></i>Delete</button>
-                    </form>
+                  <td class="text-center fs-6 dropdown">
+                    <button type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" class="btn btn-secondary dropdown-toggle" aria-expanded="false" style="background-color: transparent;border: none;position: relative !important;"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; box-shadow: rgba(66, 12, 214, 0.4) 5px 5px">
+                  {{-- Button Action --}}
+                  <a class="dropdown-item mb-1" href="{{ url('paket-laundry/'.$idx->id.'/edit')}}" ><i class="fa-solid fa-pen-to-square text-success mr-2"></i>Edit</a>
+                  <form action="{{ url('paket-laundry',$idx->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="dropdown-item delete" data-name="{{ $idx->nama }}"  style="background-color: transparent;border: none;font-size: 14px"><i class="mr-2 fa-solid fa-trash text-danger"></i>Delete</button>
+                  </form>
+                  {{-- End Button Action --}}
+                  </div>
                   </td>
                 </tr>
               @endforeach
@@ -62,12 +65,13 @@
   @endsection
   
 @push('scripts')
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-  </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+  $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 
 <script>
             
@@ -96,26 +100,48 @@
 });
 </script>
 
-  <script>
-    @if (Session::has('success'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-    toastr.success("{{ Session::get('success') }}")
-    @endif
-  </script>
+<script>
+  $(function () {
+      $('#paketlaundry').DataTable().fnDestroy({
+          columnDefs: [{
+              paging: true,
+              scrollX: true,
+              lengthChange: true,
+              searching: true,
+              ordering: true,
+              targets: [1, 2, 3, 4],
+          }, ],
+      });
+      $('button').click(function () {
+          var data = table.$('input, select', 'button', 'form').serialize();
+          return false;
+      });
+      table.columns().iterator('column', function (ctx, idx) {
+          $(table.column(idx).header()).prepend('<span class="sort-icon"/>');
+      });
+  });
+</script>
 
-  <script>
-    @if (Session::has('destroy'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-    toastr.success("{{ Session::get('destroy') }}")
-    @endif
-  </script>
+<script>
+  @if (Session::has('success'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+  toastr.success("{{ Session::get('success') }}")
+  @endif
+</script>
+
+<script>
+  @if (Session::has('destroy'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+  toastr.success("{{ Session::get('destroy') }}")
+  @endif
+</script>
 
 @endpush

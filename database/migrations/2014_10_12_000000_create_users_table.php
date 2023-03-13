@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('outlet_id')->nullable();
+            $table->id();
+            $table->foreignID('outlet_id')->nullable();
             $table->string('nama');
             $table->string('email')->unique();
             $table->enum('level', ['admin', 'karyawan','owner']);

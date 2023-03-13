@@ -13,7 +13,7 @@
         </div>
         <hr class="border-dark my-4">
         <div class="table-responsive">
-          <table class="table table-hover table-striped border rounded-1 table-sm">
+          <table class="table table-hover table-striped border rounded-1 table-sm" id="transaksi">
             <thead>
               <tr>
                 <th class="fw-bold text-center" style="font-size: 15px">No</th>
@@ -34,7 +34,7 @@
                     <td class="fw-semibold text-center fs-6">{{ $loop->iteration }}</td>
                     <td class="text-center fs-6">{{$t ->outlet->nama}}</td>
                     <td class="text-center fs-6">{{$t ->customer->nama}}</td>
-                    <td class="text-center fs-6">{{$t ->paketlaundry->jenis}}</td>
+                    <td class="text-center fs-6">{{$t ->paketlaundry->jenis}}{{$t ->paketlaundry->harga}}</td>
                     <td class="text-center fs-6">{{$t ->user->nama}}</td>
                     <td>
                       {{$t->status}}
@@ -69,8 +69,8 @@
                     <td class="text-center fs-6">{{$t -> keterangan}}</td>
                     <td class="text-center fs-6">{{$t -> diskon}}%</td>
                     <td class="text-center fs-6">Rp. {{number_format($t->total)}}</td>
-                    <td class="text-center fs-6">
-                      <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;border: none;position: relative !important;"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <td class="text-center fs-6 dropdown">
+                      <button type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" class="btn btn-secondary dropdown-toggle" aria-expanded="false" style="background-color: transparent;border: none;position: relative !important;"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; box-shadow: rgba(66, 12, 214, 0.4) 5px 5px">
                     {{-- Button Action --}}
                       <button type="button"  class="dropdown-item mb-1" style="background: none;border: none;font-size: 14px" data-toggle="modal" data-target="#editStatusModal{{$t->id}}">
@@ -104,64 +104,58 @@
   
 @push('scripts')
 <script>
-  // Ambil elemen HTML yang dibutuhkan
-  const editBtns = document.querySelectorAll('.edit-btn');
-  const editOptionsList = document.querySelectorAll('.edit-options');
-  const updateBtns = document.querySelectorAll('.update-btn');
-
-  // Sembunyikan opsi edit saat halaman dimuat
-  editOptionsList.forEach(editOptions => editOptions.style.display = 'none');
-
-  // Tambahkan event listener pada semua tombol edit
-  editBtns.forEach((editBtn, index) => {
-    const editOptions = editOptionsList[index];
-    const updateBtn = updateBtns[index];
-    const statusText = editBtn.previousElementSibling;
-
-    editBtn.addEventListener('click', function() {
-      // Tampilkan opsi edit jika sebelumnya disembunyikan, atau sebaliknya
-      if (editOptions.style.display === 'none') {
-        editOptions.style.display = 'block';
-      } else {
-        editOptions.style.display = 'none';
-      }
-    });
-
-    updateBtn.addEventListener('click', function() {
-      // Ambil nilai radio button yang dipilih
-      const status = editOptions.querySelector('input[name="status"]:checked').value;
-
-      // Kirim permintaan update status ke server
-      const id = statusText.parentNode.dataset.id;
-      fetch(`/update-status/${id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({status: status})
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Tampilkan kembali teks status dengan nilai yang baru
-        statusText.textContent = data.status;
-
-        // Sembunyikan opsi edit
-        editOptions.style.display = 'none';
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+// Ambil elemen HTML yang dibutuhkan
+const editBtns = document.querySelectorAll('.edit-btn');
+const editOptionsList = document.querySelectorAll('.edit-options');
+const updateBtns = document.querySelectorAll('.update-btn');
+// Sembunyikan opsi edit saat halaman dimuat
+editOptionsList.forEach(editOptions => editOptions.style.display = 'none');
+// Tambahkan event listener pada semua tombol edit
+editBtns.forEach((editBtn, index) => {
+  const editOptions = editOptionsList[index];
+  const updateBtn = updateBtns[index];
+  const statusText = editBtn.previousElementSibling;
+  editBtn.addEventListener('click', function() {
+    // Tampilkan opsi edit jika sebelumnya disembunyikan, atau sebaliknya
+    if (editOptions.style.display === 'none') {
+      editOptions.style.display = 'block';
+    } else {
+      editOptions.style.display = 'none';
+    }
+  });
+  updateBtn.addEventListener('click', function() {
+    // Ambil nilai radio button yang dipilih
+    const status = editOptions.querySelector('input[name="status"]:checked').value;
+    // Kirim permintaan update status ke server
+    const id = statusText.parentNode.dataset.id;
+    fetch(`/update-status/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      },
+      body: JSON.stringify({status: status})
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Tampilkan kembali teks status dengan nilai yang baru
+      statusText.textContent = data.status;
+      // Sembunyikan opsi edit
+      editOptions.style.display = 'none';
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
   });
+});
 </script>
-
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-  </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xU+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+  $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 
 <script>
             
@@ -190,26 +184,48 @@
 });
 </script>
 
-  <script>
-    @if (Session::has('success'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-    toastr.success("{{ Session::get('success') }}")
-    @endif
-  </script>
+<script>
+  $(function () {
+      $('#transaksi').DataTable().fnDestroy({
+          columnDefs: [{
+              paging: true,
+              scrollX: true,
+              lengthChange: true,
+              searching: true,
+              ordering: true,
+              targets: [1, 2, 3, 4],
+          }, ],
+      });
+      $('button').click(function () {
+          var data = table.$('input, select', 'button', 'form').serialize();
+          return false;
+      });
+      table.columns().iterator('column', function (ctx, idx) {
+          $(table.column(idx).header()).prepend('<span class="sort-icon"/>');
+      });
+  });
+</script>
 
-  <script>
-    @if (Session::has('destroy'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-    toastr.success("{{ Session::get('destroy') }}")
-    @endif
-  </script>
+<script>
+  @if (Session::has('success'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+  toastr.success("{{ Session::get('success') }}")
+  @endif
+</script>
+
+<script>
+  @if (Session::has('destroy'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+  toastr.success("{{ Session::get('destroy') }}")
+  @endif
+</script>
 
 @endpush

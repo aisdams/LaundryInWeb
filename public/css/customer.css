@@ -37,12 +37,18 @@
     color: #000;
     margin-right: 5px;
   }
-    button#dropdownMenuButton {
-    position: relative; /* tambahkan properti position relative pada button */
-    z-index: 1; /* tambahkan properti z-index pada button agar muncul di depan dropdown */
-  }
+div.dataTables_wrapper div.dataTables_length select {
+  margin-inline: .5rem !important;
+}
 
-.dropdown-menu {
-  position: absolute; /* tambahkan properti position absolute pada dropdown */
-  top: calc(30% + 5px) !important; /* atur jarak dropdown dari button dengan properti top */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  color: black!important;
+  border-radius: 4px;
+  border: 1px solid #828282;
+}
+ 
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
 }

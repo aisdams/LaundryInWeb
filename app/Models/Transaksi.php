@@ -19,7 +19,6 @@ class Transaksi extends Model
         'customer_id',
         'paketlaundry_id',
         'user_id',
-        'kode_invoice',
         'tgl',
         'berat',
         'tgl_bayar',

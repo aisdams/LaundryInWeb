@@ -2,6 +2,8 @@
 @section('content')
 @push('style')
 <link rel="stylesheet" href={{ asset('css/customer.css') }}>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+
 @endpush
 
 <div class="col-md-12 grid-margin stretch-card">
@@ -35,15 +37,14 @@
 
       <div class="form-group">
         <h6>Jenis <span class="text-danger">*</span></h6>
-        <select class="form-control form-select" name="paketlaundry_id">
-          <option selected disabled>Choose Jenis Paket</option>
+        <select id="choices-multiple-remove-button" class="form-control form-select @error('paketlaundry_id') is-invalid @enderror" name="paketlaundry_id[]" multiple required placeholder="Select Jenis upto 1 tags" multiple="multiple">
           @foreach ($paketlaundry as $idx)
-            <option value="{{ $idx->id }}">{{ $idx->jenis }} - Rp. {{ $idx->harga }}</option>
-          @endforeach
-        </select>
+                <option value="{{ $idx->id }}">{{ $idx->jenis }}-{{ $idx->harga }}</option>
+            @endforeach
+      </select>
       </div>
 
-      <div class="form-group">
+      {{-- <div class="form-group">
         <h6>Nama Karyawan<span class="text-danger">*</span></h6>
         <select class="form-control" name="user_id"> 
           <option disabled selected>Pilih Karyawan Yang input</option>
@@ -51,12 +52,12 @@
             <option value="{{$idx->id}}">{{$idx->nama}}</option>
           @endforeach
         </select>
-      </div>
+      </div> --}}
       {{--  --}}
-      <div class="form-group">
+      {{-- <div class="form-group">
         <h6>Tanggal<span class="text-danger">*</span></h6>
         <input type="datetime-local" class="form-control" placeholder="Masukkan Tanggal ..." name="tgl">
-      </div>
+      </div> --}}
       {{--  --}}
       <div class="form-group">
         <h6>Berat/kg<span class="text-danger">*</span></h6>
@@ -96,3 +97,21 @@
 </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+<script>
+  $(document).ready(function(){
+  
+  var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+     removeItemButton: true,
+     maxItemCount:1,
+     searchResultLimit:1,
+     renderChoiceLimit:1
+   }); 
+  
+  
+});
+</script>
+@endpush

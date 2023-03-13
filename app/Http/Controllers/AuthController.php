@@ -15,10 +15,6 @@ use App\Http\Requests\ChangePasswordRequest;
 
 class AuthController extends Controller
 {
-    public function _construct() {
-        $this->middleware('auth:api',['except'=>['login','register']]);
-    }
-
     public function viewlogin() {
         return view('auth.login');
     }
@@ -40,6 +36,9 @@ class AuthController extends Controller
             }elseif($user->level == 'owner') {
                 return redirect()->intended('owner')
                         ->withSuccess('You have Successfully loggedin');
+            }
+            else {
+                return redirect()->withErrors('You have Error loggedin');
             }
         }
         if($validator->fails()) {

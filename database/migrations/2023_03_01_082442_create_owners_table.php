@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('outlet_id');
+            $table->foreignID('outlet_id');
             $table->string('nama');
             $table->string('alamat');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);

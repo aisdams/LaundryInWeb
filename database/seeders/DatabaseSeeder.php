@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
         [
             'outlet_id' => '1',
-            'nama' => 'aDeMinE',
-            'email' => 'admin@admin.com',
+            'nama' => 'suho',
+            'email' => 'suho@gmail.com',
             'level' => 'admin',
             'notelp' => '1234567890',
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('suho123'),
         ],
         ]);
     }

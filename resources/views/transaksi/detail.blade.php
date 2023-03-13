@@ -50,14 +50,6 @@
                             <th>Status</th>
                             <td>:</td>
                             <td>{{ $transaksi->status }}</td>
-                            <th>Dibayar</th>
-                            <td>:</td>
-                            <td>{{ $transaksi->dibayar }}</td>
-                        </tr>
-                        <tr>
-                            <th>Diskon</th>
-                            <td>:</td>
-                            <td>{{ $transaksi->diskon }}%</td>
                             <th>total</th>
                             <td>:</td>
                             <td>Rp. {{ number_format($transaksi->total) }}</td>

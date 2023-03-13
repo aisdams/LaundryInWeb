@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('paket_laundries', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('outlet_id');
+            $table->id();
+            $table->unsignedBigInteger('outlet_id')->nullable()->default(0);
             $table->enum('jenis', ['Kiloan','Dry Cleaning', 'Gorden','Jaket Kulit', 'Karpet', 'Sepatu', 'Koper-Tas', 'Boneka', 'Helm', 'SpringBed', 'Lainnya']);
             $table->string('nama_paket');
             $table->decimal('harga', 10, 2);
             $table->timestamps();
+            $table->foreign('outlet_id')->references('id')->on('outlets');
         });
     }
 

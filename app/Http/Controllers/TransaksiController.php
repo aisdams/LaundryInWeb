@@ -10,8 +10,10 @@ use App\Models\Customer;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\PaketLaundries;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class TransaksiController extends Controller
@@ -50,7 +52,7 @@ class TransaksiController extends Controller
                     $t->diskon = 0;
                 }
             }
-    
+
             $t->diskon_value = $diskon_value;
             $t->total = $total - $diskon_value;
         }
@@ -77,7 +79,7 @@ class TransaksiController extends Controller
         $customer = Customer::find($id);
         $paketlaundry = PaketLaundries::find($id);
         $user = User::find($id);
-        $transaksi = Transaksi::with('customer','outlet','paketlaundry','user')->find($id);
+        $transaksi = Transaksi::with('customer','outlet','paketlaundry','user')->get()->find($id);
         return view('transaksi.detail', compact('transaksi','customer','outlet','paketlaundry','user'));
     }
 
@@ -105,9 +107,9 @@ class TransaksiController extends Controller
 
         public function laporan(Request $request)
     {
-        $tanggal = $request->input('tgl');
+        $tanggal = $request->input('tgl_bayar');
         $laporan = DB::table('transaksis')
-                ->whereDate('tgl', $tanggal)
+                ->whereDate('tgl_bayar', $tanggal)
                 ->join('outlets', 'transaksis.outlet_id', '=', 'outlets.id')
                 ->join('customers', 'transaksis.customer_id', '=', 'customers.id')
                 ->join('paket_laundries', 'transaksis.paketlaundry_id', '=', 'paket_laundries.id')
@@ -123,13 +125,21 @@ class TransaksiController extends Controller
 
     public function store(Request $request)
     {
-        $paketlaundry = PaketLaundries::findOrFail($request->input('paketlaundry_id'));
-        $harga = $paketlaundry->harga;
+        $paketlaundryIds = $request->input('paketlaundry_id');
+
+        $paketlaundries = PaketLaundries::whereIn('id', $paketlaundryIds)->get();
+
+        if ($paketlaundries->isEmpty()) {
+            // Handle the error case here
+            return redirect()->back()->withInput()->withErrors(['Paket laundry tidak valid']);
+        }
+
+        $totalHarga = $paketlaundries->sum('harga');
 
         // Hitung total
         $berat = $request->input('berat');
         $biaya_tambahan = $request->input('biaya_tambahan');
-        $total = ($berat * $harga) + $biaya_tambahan;
+        $total = ($berat * $totalHarga) + $biaya_tambahan;
 
         // Hitung diskon
         $minimal_pembelian1 = 50000;
@@ -149,14 +159,14 @@ class TransaksiController extends Controller
             }
         }
 
+        $paketlaundry_ids = $request->input('paketlaundry_id');
+        $paketlaundry_ids_str = implode(',', $paketlaundry_ids);
         // Simpan data laundry ke dalam database
         $transaksi = new Transaksi;
         $transaksi->outlet_id = $request->input('outlet_id');
         $transaksi->customer_id = $request->input('customer_id');
-        $transaksi->paketlaundry_id = $request->input('paketlaundry_id');
-        $transaksi->user_id = $request->input('user_id');
-        $transaksi->kode_invoice = $request->input('kode_invoice');
-        $transaksi->tgl = $request->input('tgl');
+        $transaksi->paketlaundry_id = $paketlaundry_ids_str;
+        $transaksi->user_id = Auth::user()->id;
         $transaksi->berat = $request->input('berat');
         $transaksi->tgl_bayar = $request->input('tgl_bayar');
         $transaksi->biaya_tambahan = $request->input('biaya_tambahan');
